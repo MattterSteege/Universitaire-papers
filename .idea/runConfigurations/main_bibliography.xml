@@ -3,13 +3,14 @@
     <texify-bibtex>
       <compiler>BIBER</compiler>
       <compiler-path />
-      <compiler-arguments />
-      <envs>
+      <compiler-arguments>--input-directory=$PROJECT_DIR$/auxil --quiet</compiler-arguments>
+      <envs pass-parent-envs="false">
         <env name="BIBINPUTS" value="$PROJECT_DIR$/src" />
-        <env name="BSTINPUTS" value="$PROJECT_DIR$/src;" />
+        <env name="BSTINPUTS" value="$PROJECT_DIR$/src" />
       </envs>
       <main-file>$PROJECT_DIR$/src/main.tex</main-file>
       <aux-dir>$PROJECT_DIR$/out</aux-dir>
+      <latex-distribution>PROJECT_SDK</latex-distribution>
     </texify-bibtex>
     <method v="2" />
   </configuration>

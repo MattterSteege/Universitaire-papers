@@ -3,11 +3,13 @@
     <texify>
       <compiler>PDFLATEX</compiler>
       <compiler-path />
-      <sumatra-path />
-      <pdf-viewer>NONE</pdf-viewer>
+      <pdf-viewer>BUILT-IN-PDF-VIEWER</pdf-viewer>
+      <require-focus>true</require-focus>
       <viewer-command />
-      <compiler-arguments />
+      <compiler-arguments>-interaction=batchmode</compiler-arguments>
       <envs />
+      <expand-macros-in-environment-variables>false</expand-macros-in-environment-variables>
+      <before-run-command />
       <main-file>$PROJECT_DIR$/src/main.tex</main-file>
       <output-path>$PROJECT_DIR$/out</output-path>
       <auxil-path>$PROJECT_DIR$/auxil</auxil-path>

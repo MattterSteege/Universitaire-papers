@@ -43,9 +43,9 @@
 \settopmatter{printacmref=false}
 \setcopyright{none}
 
-% ----------- Commands -----------
-\newcommand{\vertspace}{\vspace{0.05in}}
-\newcommand{\question}[1]{\vertspace\begin{center}\parbox{0.8\linewidth}{\centering\textit{#1}}\end{center}\vertspace}
+% ----------- custom library -----------
+\include{standardCommands}
+
 
 % ----------- Authors and title -----------
 \title{Contextual integrity}
@@ -64,6 +64,9 @@
 
     \maketitle
 
+    \section*{Abstract}
+    \lorem
+
     \section{Introductie}
     We leven in een tijd waarin zoveel mogelijk onderdelen van iemands leven aan het internet gekoppeld (kunnen) worden.
     Zo ook je eigen voordeur: de opkomst van zogenaamde videodeurbellen, zoals deurbellen van Ring of Eufy, is een steeds bekender gezicht in de wijken van Nederland.
@@ -79,8 +82,8 @@
 
     \subsection{Theoretisch kader}
     % CHECK: Contextual integrity uitleggen.
-    % Benoem hoe dit verschilt van het klassieke idee van privacy (bijv. “control over information”).
-    % Breng het naar jouw onderwerp: de context van de stoep voor een huis → normaal geen registratie, maar met een deurbelcamera wel. Hierdoor raakt de normale informatiestroom verstoord.
+    % CHECK: Benoem hoe dit verschilt van het klassieke idee van privacy (bijv. “control over information”).
+    % CHECK: Breng het naar jouw onderwerp: de context van de stoep voor een huis → normaal geen registratie, maar met een deurbelcamera wel. Hierdoor raakt de normale informatiestroom verstoord.
 
     \parencite{nissenbaum2009privacy} Schreef al over een door haar ontwikkeld privacy theorie: \textbf{Contextual integrity}.
     Dit schreef zij in haar boek \textit{Privacy In Context: Technology, Policy, and the Integrity of Social Life.}
@@ -99,14 +102,20 @@
     Hier komt contextuele integriteit goed naar boven.
     Want gebaseerd op de situatie deel je (of wil je) wel of niet bepaalde data met bepaalde entiteiten en deze entiteiten deze data ook niet doorgeven aan andere waarvoor de data niet nodig is.
 
-    Dit wijkt af van het "traditionele" denkbeeld, oftwel \textit{control over information} waarin een idividu zelf zijn data beheert en kiest of data wel of niet gedeeld wordt.
-    Dit is veel meer individu-gecentreerd en contextuele integriteit is meer (je raad het al) context-gecentreerd.
+    Dit wijkt af van het "traditionele" denkbeeld, oftwel \textit{control over information} waarin een individu zelf zijn data beheert en kiest of data wel of niet gedeeld wordt.
+    Dit is veel meer individu-gecentreerd en contextuele integriteit is meer (je raadt het al) context-gecentreerd.
+
+    \subsection{Relevantie}
+    Videodeurbellen zijn dus nauw verbonden met het concept contextual integrity.
+    Voor eigen veiligheid (of gemoedsrust) schaffen steeds meer mensen een videodeurbel aan, dit gaat echter ten koste van de privacy van voorbijgangers, buren en andere die toevallig langs een huis met een videodeurbel lopen.
+    Daarom wordt in dit onderzoek gekeken naar of de waarde in veiligheidsgevoel opweegt tegen het ongevraagd (en passief) filmen van voorbijgangers en dergelijke.
 
     \section{Methode}
     Dit onderzoek is een kwantitatief onderzoek om de vragen rondom de contextuele integriteit en privacy en Slimme (video) deurbellen te beantwoorden.
     Hiervoor is uitsluitend literatuuronderzoek gedaan.
-    Hiervoor zijn veel verschillende bronnen geraadpleegd, grotendeels via Google Scholar gedaan.
+    Er zijn veel verschillende bronnen geraadpleegd, grotendeels via Google Scholar gedaan.
     Hierbij zijn verschillende zoektermen gebruikt zoals: Slimme deurbel, Ring (video)deurbel, Smart doorbell, Privacy video doorbell.
+
 
     \subsection{Inclusie- en exclusiecriteria}
     Contextual integrity uitleggen.
