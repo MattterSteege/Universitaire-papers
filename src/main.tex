@@ -1,58 +1,14 @@
+% ----------- Document settings -----------
 \documentclass[nonacm,sigconf]{acmart}
-
-% ----------- General look -----------
-\setlength{\columnsep}{0.333in} % tighter column gap
-\renewcommand{\baselinestretch}{1.05} % a touch more line spacing
-\setlength\parindent{1em}
-
-% ----------- Typography -----------
-\usepackage{microtype} % better spacing & justification
-
-
-% ----------- Headings -----------
-\usepackage{titlesec}
-\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
-\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.75em}{}
-
-% ----------- Lists -----------
-\usepackage{enumitem}
-\setlist{nosep} % compact itemize/enumerate
-
-% ----------- Figures & Tables -----------
-\usepackage{subcaption} % nicer subfigures
-\usepackage{floatrow} % if you want aligned figure/table captions
-
-% ----------- Footnotes -----------
-\usepackage[hang,flushmargin]{footmisc} % neat footnotes
-
-% ----------- Hyperlinks -----------
-\usepackage[colorlinks=true,
-    linkcolor=blue,
-    citecolor=blue,
-    urlcolor=blue]{hyperref}
-
-% ----------- Column balance -----------
-\usepackage{balance}
-
-% ----------- Bibliography -----------
-\usepackage[backend=biber,style=apa]{biblatex}
-\DeclareLanguageMapping{dutch}{dutch-apa} % APA 7 in Dutch formatting
-\addbibresource{main.bib}
-
-% ----------- Acmart settings -----------
-\settopmatter{printacmref=false}
-\setcopyright{none}
-
-% ----------- custom library -----------
-\include{standardCommands}
-
+\include{paperSettings} % import custom general paper settings
+\include{standardCommands} % import custom commands and packages
 
 % ----------- Authors and title -----------
-\title{Contextual integrity}
-\date{} % acmart usually overrides dates
+\title{De wereld buiten je voordeur}
+\subtitle{Contextual integrity bij slimme deurbellen}
 
 \author{Matt ter Steege}
-\date{Oktober 2025}
+\date{Oktober 2025} %due date
 \email{m.j.ter.steege@students.uu.nl}
 \affiliation{
     \institution{Universiteit Utrecht, 9932003}
@@ -60,17 +16,32 @@
     \country{Nederland}
 }
 
+% ----------- Start document -----------
+
 \begin{document}
 
     \maketitle
 
+    \begin{editorsonlyBox}
+    \begin{itemize}[leftmargin = *,listparindent =1cm]
+        \item[X] Titel en eventuele subtitel, opleiding, naam schrijver, studentnummer schrijver.
+        \item[-] Abstract
+        \item[-] ‘Inleiding’ met kader, probleemstelling, onderzoeksvraag en aankondiging van de structuur van het verslag. Hierin verwerk je ook een stukje achtergrond met een beschrijving van de belangrijke concepten of ‘related work’.
+        \item[-] Een ‘Methode’ met een beschrijving van de werkwijze die je gaat gebruiken om de onderzoeksvraag te beantwoorden.
+        \item[-] Bespreking van de gevonden wetenschappelijke literatuur in een beschouwend geheel die aansluiten bij de onderzoeksvraag.
+        \item[-] Een overkoepelende conclusie vanuit de verkregen inzichten en beantwoord de onderzoeksvraag met deze inzichten
+    \end{itemize}
+    \end{editorsonlyBox}
+
+    \begin{editorsonlyBox}
     \section*{Abstract}
     \lorem
+    \end{editorsonlyBox}
 
     \section{Introductie}
     We leven in een tijd waarin zoveel mogelijk onderdelen van iemands leven aan het internet gekoppeld (kunnen) worden.
     Zo ook je eigen voordeur: de opkomst van zogenaamde videodeurbellen, zoals deurbellen van Ring of Eufy, is een steeds bekender gezicht in de wijken van Nederland.
-    Het plus- (en tevens ook min-)punt van deze producten is dat elke (verdachte) beweging die deurbel detecteert, wordt opgenomen en doorgestuurd naar de eigenaar.
+    Het plus- (en tevens ook min-)punt van deze producten is dat elke (verdachte) beweging die de deurbel detecteert, wordt opgenomen en doorgestuurd naar de eigenaar.
     Mogelijke inbrekers worden afgeschrikt door het idee dat ze op video staan bij een inbraakpoging en dat zorgt bij veel mensen voor een veilig gevoel, maar dit heeft ook een keerzijde.
     De postbode die je krantje komt bezorgen, maar ook voorbijrijdende auto’s, buren die een ommetje maken of kinderen die langsfietsen worden ook opgenomen, terwijl dit niet de doelgroep is waarvoor (of waartegen) deze deurbel ontworpen is.
     Dit roept de vraag op:
@@ -78,14 +49,16 @@
     \question{Hoe beïnvloedt het constant filmen van slimme deurbellen de privacy van buren en voorbijgangers?}
 
     Deze vraag sluit nauw aan bij het concept contextual integrity van Helen Nissenbaum, waarin iemand zo goed mogelijk in zijn of haar persoonlijke vrijheid gelaten wordt en data alleen in een passende context gedeeld mag worden.
-    Videodeurbellen doorbreken deze verwachte informatiestromen: waar voorbijgangers normaal anoniem door een straat konden lopen, worden zij nu onbewust onderdeel van een digitaal surveillancesysteem.
+    Videodeurbellen doorbreken deze verwachte informatiestromen, want waar voorbijgangers normaal anoniem over straat liepen, worden zij nu onbewust onderdeel van een digitaal surveillancesysteem.
 
     \subsection{Theoretisch kader}
-    % CHECK: Contextual integrity uitleggen.
-    % CHECK: Benoem hoe dit verschilt van het klassieke idee van privacy (bijv. “control over information”).
-    % CHECK: Breng het naar jouw onderwerp: de context van de stoep voor een huis → normaal geen registratie, maar met een deurbelcamera wel. Hierdoor raakt de normale informatiestroom verstoord.
+    \begin{editorsonlyBox}
+    CHECK: Contextual integrity uitleggen.\\
+    CHECK: Benoem hoe dit verschilt van het klassieke idee van privacy (bijv. “control over information”).\\
+    CHECK: Breng het naar jouw onderwerp: de context van de stoep voor een huis → normaal geen registratie, maar met een deurbelcamera wel. Hierdoor raakt de normale informatiestroom verstoord.
+    \end{editorsonlyBox}
 
-    \parencite{nissenbaum2009privacy} Schreef al over een door haar ontwikkeld privacy theorie: \textbf{Contextual integrity}.
+    \parencite{nissenbaum2009privacy}\editorsfootnote{Moet je nog lezen :(} Schreef al over een door haar ontwikkeld privacy theorie: \textbf{Contextual integrity}.
     Dit schreef zij in haar boek \textit{Privacy In Context: Technology, Policy, and the Integrity of Social Life.}
 
     \vertspace
@@ -106,7 +79,7 @@
     Dit is veel meer individu-gecentreerd en contextuele integriteit is meer (je raadt het al) context-gecentreerd.
 
     \subsection{Relevantie}
-    Videodeurbellen zijn dus nauw verbonden met het concept contextual integrity.
+    Videodeurbellen zijn dus nauw verbonden met het concept contextuele integriteit.
     Voor eigen veiligheid (of gemoedsrust) schaffen steeds meer mensen een videodeurbel aan, dit gaat echter ten koste van de privacy van voorbijgangers, buren en andere die toevallig langs een huis met een videodeurbel lopen.
     Daarom wordt in dit onderzoek gekeken naar of de waarde in veiligheidsgevoel opweegt tegen het ongevraagd (en passief) filmen van voorbijgangers en dergelijke.
 

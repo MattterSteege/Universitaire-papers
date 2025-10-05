@@ -13,4 +13,57 @@
 % Writes a single paragraph of Lorum Ipsum text
 \newcommand{\lorem}{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget tortor a urna ornare pellentesque. Integer sit amet purus nec sem iaculis euismod. Duis at ipsum eu libero pharetra egestas. Quisque eleifend odio velit, at sollicitudin metus dictum eu. Integer nec mi congue, gravida nibh sed, faucibus mauris. Sed vel ipsum lobortis felis gravida dignissim. Curabitur vestibulum turpis eu orci lacinia consectetur.}
 
-%
+% command for Editor's notes and comments
+% defines custom commands:
+% - \editorsonly{...} for inline comments
+% - \begin{editorsonlyBox} ... \end{editorsonlyBox} for boxed comments
+% - \editorsfootnote{...} for comments in footnotes
+\usepackage{xcolor}
+\usepackage{comment}
+
+\ifthenelse{\boolean{editorsversion}}{%
+    % EDITORS VERSION
+    % inline red comments - compact, no paragraph indentation
+    \newcommand{\editorsonly}[1]{%
+        \begingroup
+        \setlength{\baselineskip}{0.1\baselineskip}% very tight line spacing
+        \setlength{\parindent}{0pt}% no paragraph indentation
+        \setlength{\parskip}{0pt}% no space between paragraphs
+        \textcolor{red!70!black}{\footnotesize#1}% tiny font size
+        \endgroup}
+
+    % environment for soft-background editor comments
+    \newenvironment{editorsonlyBox}{%
+        \par\medskip
+        \begin{tcolorbox}[
+            enhanced,
+            breakable,
+            colback=red!5,
+            colframe=red!20!white,
+            boxrule=0pt,
+            borderline north={1pt}{0pt}{red!40!white},
+            sharp corners,
+            before skip=6pt,
+            after skip=6pt,
+            title={\textcolor{red!60!black}{\footnotesize Comment for editors:}},
+            coltitle=red!70!black,
+            fonttitle=\bfseries,
+            top=2pt,
+            bottom=2pt,
+            left=4pt,
+            right=4pt
+        ]
+    }{%
+        \end{tcolorbox}
+    }
+
+    % red footnotes for editors
+    \newcommand{\editorsfootnote}[1]{%
+        \textcolor{red!70!black}{\footnote{\textcolor{red!70!black}{Editor's note: #1}}}%
+    }
+}{%
+% STUDENT VERSION: suppress all editor content
+    \newcommand{\editorsonly}[1]{}
+    \newenvironment{editorsonlyBox}{\comment}{\endcomment}
+    \newcommand{\editorsfootnote}[1]{}
+}

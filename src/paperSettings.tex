@@ -1,0 +1,48 @@
+% ----------- General look -----------
+\setlength{\columnsep}{0.333in} % tighter column gap
+\renewcommand{\baselinestretch}{1.05} % a touch more line spacing
+\setlength\parindent{1em}
+
+% ----------- Typography -----------
+\usepackage{microtype} % better spacing & justification
+
+% ----------- Headings -----------
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.75em}{}
+
+% ----------- Lists -----------
+\usepackage{enumitem}
+\setlist{nosep} % compact itemize/enumerate
+
+% ----------- Figures & Tables -----------
+\usepackage{subcaption} % nicer subfigures
+\usepackage{floatrow} % if you want aligned figure/table captions
+\usepackage{tcolorbox} % for boxing figures/tables
+
+% ----------- Footnotes -----------
+\usepackage[hang,flushmargin]{footmisc} % neat footnotes
+
+% ----------- Hyperlinks -----------
+\usepackage[colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue]{hyperref}
+
+% ----------- Column balance -----------
+\usepackage{balance}
+
+% ----------- Bibliography -----------
+\usepackage[backend=biber,style=apa]{biblatex}
+\DeclareLanguageMapping{dutch}{dutch-apa} % APA 7 in Dutch formatting
+\addbibresource{main.bib}
+
+% ----------- Acmart settings -----------
+\settopmatter{printacmref=false}
+\setcopyright{none}
+
+% ----------- Editors/general version -----------
+
+\usepackage{ifthen}
+\newboolean{editorsversion}
+\setboolean{editorsversion}{true}  % change to false for student version
