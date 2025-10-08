@@ -4,3 +4,7 @@
 /out/main.synctex.gz
 /auxil/
 .gitignore
+/out/main.out
+/out/main.aux
+/out/main.log
+/out/main.run.xml
