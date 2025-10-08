@@ -20,14 +20,16 @@
 \usepackage{floatrow} % if you want aligned figure/table captions
 \usepackage{tcolorbox} % for boxing figures/tables
 \usepackage{float}
-\usepackage{adjustbox}
-
-\captionsetup[table]{name=Tabel,format=hang,labelfont={bf}}
-
 \usepackage{tabularx}
 
 % Light gray background color for tables
-\definecolor{lightgraybg}{gray}{0.93}
+\captionsetup[table]{
+    name=Tabel,                  % rename "Table" to "Tabel"
+    format=hang,                 % hanging indentation
+    labelfont={bf},              % "Tabel 1:" in bold
+    textfont={normalfont},       % caption text in normal (non-bold)
+    labelsep=colon               % ensures "Tabel 1:" (with colon)
+}
 
 % ----------- Footnotes -----------
 \usepackage[hang,flushmargin]{footmisc} % neat footnotes
@@ -49,6 +51,8 @@
 % ----------- Acmart settings -----------
 \settopmatter{printacmref=false}
 \setcopyright{none}
+\settopmatter{printfolios=true}
+
 
 % ----------- Editors/general version -----------
 
