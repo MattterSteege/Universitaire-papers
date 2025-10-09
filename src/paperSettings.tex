@@ -25,11 +25,20 @@
 % Light gray background color for tables
 \captionsetup[table]{
     name=Tabel,                  % rename "Table" to "Tabel"
-    format=hang,                 % hanging indentation
     labelfont={bf},              % "Tabel 1:" in bold
     textfont={normalfont},       % caption text in normal (non-bold)
     labelsep=colon               % ensures "Tabel 1:" (with colon)
 }
+
+\captionsetup[figure]{
+    name=Figuur,                 % rename "Figure" to "Figuur"
+    labelfont={bf},              % "Figuur 1:" in bold
+    textfont={normalfont},       % caption text in normal (non-bold)
+    labelsep=colon               % ensures "Figuur 1:" (with colon)
+}
+
+% set figures to the \images folder
+\graphicspath{{../images/}}
 
 % ----------- Footnotes -----------
 \usepackage[hang,flushmargin]{footmisc} % neat footnotes
@@ -55,7 +64,7 @@
 
 
 % ----------- Editors/general version -----------
-
+\usepackage{comment}
 \usepackage{ifthen}
 \newboolean{editorsversion}
 \setboolean{editorsversion}{true}  % change to false for student version

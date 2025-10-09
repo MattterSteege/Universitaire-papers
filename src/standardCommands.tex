@@ -13,24 +13,40 @@
 % Writes a single paragraph of Lorum Ipsum text
 \newcommand{\lorem}{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget tortor a urna ornare pellentesque. Integer sit amet purus nec sem iaculis euismod. Duis at ipsum eu libero pharetra egestas. Quisque eleifend odio velit, at sollicitudin metus dictum eu. Integer nec mi congue, gravida nibh sed, faucibus mauris. Sed vel ipsum lobortis felis gravida dignissim. Curabitur vestibulum turpis eu orci lacinia consectetur.}
 
+% APA style qoutes
+\usepackage{xstring}
+\newcommand{\qoute}[3]{%
+  % Count the number of words in the quote
+  \StrCount{#1}{ }[\woordenaantal]%
+  \ifthenelse{\woordenaantal < 39}{
+    ``#1'' (\citeauthor{#2}, \citeyear{#2}, p. #3) % Kort citaat (minder dan 40 woorden)
+  }{
+    \vertspace
+    \begin{flushright}
+      \parbox{0.95\linewidth}{#1}
+      (\citeauthor{#2}, \citeyear{#2}, p. #3)
+    \end{flushright}
+    \vertspace % Lang citaat (40 woorden of meer)
+  }
+}
+
+
 % command for Editor's notes and comments
 % defines custom commands:
 % - \editorsonly{...} for inline comments
 % - \begin{editorsonlyBox} ... \end{editorsonlyBox} for boxed comments
 % - \editorsfootnote{...} for comments in footnotes
 \usepackage{xcolor}
-\usepackage{comment}
 
 \ifthenelse{\boolean{editorsversion}}{%
     % EDITORS VERSION
     % inline red comments - compact, no paragraph indentation
     \newcommand{\editorsonly}[1]{%
-        \begingroup
-        \setlength{\baselineskip}{0.1\baselineskip}% very tight line spacing
-        \setlength{\parindent}{0pt}% no paragraph indentation
-        \setlength{\parskip}{0pt}% no space between paragraphs
-        \textcolor{red!70!black}{\footnotesize#1}% tiny font size
-        \endgroup}
+        \par\vspace{0.05in}
+        {\footnotesize\noindent\textcolor{red!70!black}{\textbf{Editor's note:} #1}}%
+        \par\vspace{0.05in}
+    }
+}
 
     % environment for soft-background editor comments
     \newenvironment{editorsonlyBox}{%
