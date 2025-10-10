@@ -52,7 +52,6 @@
         {\footnotesize\noindent\textcolor{red!70!black}{\textbf{Editor's note:} #1}}%
         \par\vspace{0.05in}
     }
-}
 
     % environment for soft-background editor comments
     \newenvironment{editorsonlyBox}{%
@@ -83,6 +82,9 @@
     \newcommand{\editorsfootnote}[1]{%
         \textcolor{red!70!black}{\footnote{\textcolor{red!70!black}{Editor's note: #1}}}%
     }
+
+    % command to cite all references in the .bib file (for editors only)
+    \nocite{*}
 }{%
 % STUDENT VERSION: suppress all editor content
     \newcommand{\editorsonly}[1]{}
