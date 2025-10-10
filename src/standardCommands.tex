@@ -30,6 +30,12 @@
   }
 }
 
+% cites like \parencite[prenote][postnote]{cite}
+\newcommand{\parencite}[3][]{%
+    (#1 \citeauthor{#3}, \citeyear{#3}#2)%
+}
+
+
 
 % command for Editor's notes and comments
 % defines custom commands:
