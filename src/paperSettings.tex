@@ -1,10 +1,31 @@
-% ----------- General look -----------
-\setlength{\columnsep}{0.333in} % tighter column gap
-\renewcommand{\baselinestretch}{1.05} % a touch more line spacing
+% ====================================================
+% General layout, typography & document-wide settings
+% ====================================================
+
+% ----------- Document class -----------
+\def\documentTitle      {De wereld buiten je voordeur} % replace with actual document title
+\def\documentSubtitle   {Contextual integrity bij slimme deurbellen} % replace with actual subtitle if any, else leave empty
+
+\def\authorName         {Matt ter Steege, 9932003} % replace with actual author name
+\def\authorEmail        {matttersteege@gmail.com} % replace with actual author email
+\def\institutionName    {Universiteit Utrecht} % replace with actual institution name
+\def\institutionCountry {Nederland} % replace with actual institution location
+\def\institutionCity    {Utrecht} % replace with actual institution location
+
+\def\dueDate            {Oktober 2025} % replace with actual due date
+
+% ----------- Encoding & Fonts -----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc} % remove if using XeLaTeX/LuaLaTeX
+
+% ----------- Page layout -----------
+\usepackage[a4paper,margin=1in]{geometry}
+\setlength{\columnsep}{0.333in}
+\renewcommand{\baselinestretch}{1.05}
 \setlength\parindent{1em}
 
 % ----------- Typography -----------
-\usepackage{microtype} % better spacing & justification
+\usepackage{microtype} % subtle spacing & justification improvements
 
 % ----------- Headings -----------
 \usepackage{titlesec}
@@ -13,17 +34,23 @@
 
 % ----------- Lists -----------
 \usepackage{enumitem}
-\setlist{nosep} % compact itemize/enumerate
+\setlist[itemize]{
+    leftmargin = *,
+    listparindent = 1cm,
+    label = {-} % makes the default item marker a dash
+}
 
 % ----------- Figures & Tables -----------
-\usepackage{subcaption} % nicer subfigures
-\usepackage{floatrow} % if you want aligned figure/table captions
-\usepackage{tcolorbox} % for boxing figures/tables
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{tcolorbox}
 \usepackage{float}
 \usepackage{tabularx}
-\usepackage{graphicx}
+\usepackage{booktabs} % professional tables
+\usepackage{xcolor}
 
-% Light gray background color for tables
+% Caption formatting
+\usepackage{caption}
 \captionsetup[table]{
     name=Tabel,                  % rename "Table" to "Tabel"
     labelfont={bf},              % "Tabel 1:" in bold
@@ -39,30 +66,53 @@
 }
 
 % ----------- Footnotes -----------
-\usepackage[hang,flushmargin]{footmisc} % neat footnotes
+\usepackage[hang,flushmargin]{footmisc}
 
 % ----------- Hyperlinks -----------
-\usepackage[colorlinks=true,
+\usepackage[
+    colorlinks=true,
     linkcolor=blue,
     citecolor=blue,
-    urlcolor=blue]{hyperref}
+    urlcolor=blue,
+]{hyperref}
 
 % ----------- Column balance -----------
 \usepackage{balance}
 
 % ----------- Bibliography -----------
 \usepackage[backend=biber,style=apa]{biblatex}
-\DeclareLanguageMapping{dutch}{dutch-apa} % APA 7 in Dutch formatting
+\DeclareLanguageMapping{dutch}{dutch-apa}
+\DefineBibliographyStrings{dutch}{andothers = {et al.}}
 \addbibresource{main.bib}
+\setlength\bibitemsep{0.25em}
 
-% ----------- Acmart settings -----------
+% ----------- ACM-style tweaks (optional) -----------
 \settopmatter{printacmref=false}
 \setcopyright{none}
 \settopmatter{printfolios=true}
-
 
 % ----------- Editors/general version -----------
 \usepackage{comment}
 \usepackage{ifthen}
 \newboolean{editorsversion}
 \setboolean{editorsversion}{true}  % change to false for student version
+
+%----------- DONT TOUCH BELOW THIS LINE -----------
+\title{\documentTitle}
+\subtitle{\documentSubtitle}
+
+\author{\authorName}
+\date{\dueDate}
+\email{\authorEmail}
+\affiliation{
+    \institution{\institutionName}
+    \city{\institutionCity}
+    \country{\institutionCountry}
+}
+
+
+\hypersetup{
+    pdfauthor={\authorName},
+    pdftitle={\documentTitle},
+    pdfborder={0 0 0}
+}

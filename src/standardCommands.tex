@@ -42,8 +42,6 @@
 % - \editorsonly{...} for inline comments
 % - \begin{editorsonlyBox} ... \end{editorsonlyBox} for boxed comments
 % - \editorsfootnote{...} for comments in footnotes
-\usepackage{xcolor}
-
 \ifthenelse{\boolean{editorsversion}}{%
     % EDITORS VERSION
     % inline red comments - compact, no paragraph indentation
@@ -87,7 +85,7 @@
     \nocite{*}
 }{%
 % STUDENT VERSION: suppress all editor content
-    \newcommand{\editorsonly}[1]{}
-    \newenvironment{editorsonlyBox}{\comment}{\endcomment}
+    \newcommand{\editorsonly}[1]{\ignorespaces}
+    \newenvironment{editorsonlyBox}{}{}
     \newcommand{\editorsfootnote}[1]{}
 }

@@ -3,19 +3,6 @@
 \include{paperSettings} % import custom general paper settings
 \include{standardCommands} % import custom commands and packages
 
-% ----------- Authors and title -----------
-\title{De wereld buiten je voordeur}
-\subtitle{Contextual integrity bij slimme deurbellen}
-
-\author{Matt ter Steege}
-\date{Oktober 2025} %due date
-\email{m.j.ter.steege@students.uu.nl}
-\affiliation{
-    \institution{Universiteit Utrecht, 9932003}
-    \city{Utrecht}
-    \country{Nederland}
-}
-
 % ----------- Start document -----------
 
 \begin{document}
@@ -23,15 +10,16 @@
     \maketitle
 
     \begin{editorsonlyBox}
-    \begin{itemize}[leftmargin = *,listparindent =1cm]
-        \item[X] Titel en eventuele subtitel, opleiding, naam schrijver, studentnummer schrijver.
-        \item[-] Abstract
-        \item[-] ‘Inleiding’ met kader, probleemstelling, onderzoeksvraag en aankondiging van de structuur van het verslag. Hierin verwerk je ook een stukje achtergrond met een beschrijving van de belangrijke concepten of ‘related work’.
-        \item[-] Een ‘Methode’ met een beschrijving van de werkwijze die je gaat gebruiken om de onderzoeksvraag te beantwoorden.
-        \item[-] Bespreking van de gevonden wetenschappelijke literatuur in een beschouwend geheel die aansluiten bij de onderzoeksvraag.
-        \item[-] Een overkoepelende conclusie vanuit de verkregen inzichten en beantwoord de onderzoeksvraag met deze inzichten
-    \end{itemize}
+        \begin{itemize}
+            \item[X] Titel en eventuele subtitel, opleiding, naam schrijver, studentnummer schrijver.
+            \item Abstract
+            \item ‘Inleiding’ met kader, probleemstelling, onderzoeksvraag en aankondiging van de structuur van het verslag. Hierin verwerk je ook een stukje achtergrond met een beschrijving van de belangrijke concepten of ‘related work’.
+            \item Een ‘Methode’ met een beschrijving van de werkwijze die je gaat gebruiken om de onderzoeksvraag te beantwoorden.
+            \item Bespreking van de gevonden wetenschappelijke literatuur in een beschouwend geheel die aansluiten bij de onderzoeksvraag.
+            \item Een overkoepelende conclusie vanuit de verkregen inzichten en beantwoord de onderzoeksvraag met deze inzichten
+        \end{itemize}
     \end{editorsonlyBox}
+
 
     \section{Introductie}
     We leven in een tijd waarin zoveel mogelijk onderdelen van iemands leven aan het internet gekoppeld (kunnen) worden.
@@ -48,9 +36,9 @@
 
     \subsection{Theoretisch kader}
     \begin{editorsonlyBox}
-    CHECK: Contextual integrity uitleggen.\\
-    CHECK: Benoem hoe dit verschilt van het klassieke idee van privacy (bijv. “control over information”).\\
-    CHECK: Breng het naar jouw onderwerp: de context van de stoep voor een huis → normaal geen registratie, maar met een deurbelcamera wel. Hierdoor raakt de normale informatiestroom verstoord.
+        CHECK: Contextual integrity uitleggen.\\
+        CHECK: Benoem hoe dit verschilt van het klassieke idee van privacy (bijv. “control over information”).\\
+        CHECK: Breng het naar jouw onderwerp: de context van de stoep voor een huis → normaal geen registratie, maar met een deurbelcamera wel. Hierdoor raakt de normale informatiestroom verstoord.
     \end{editorsonlyBox}
 
     \parencite{nissenbaum2009privacy}\editorsfootnote{Moet je nog lezen :(} Schreef al over een door haar ontwikkeld privacy theorie: \textbf{Contextual integrity}.
@@ -78,6 +66,7 @@
     Voor eigen veiligheid (of gemoedsrust) schaffen steeds meer mensen een videodeurbel aan, dit gaat echter ten koste van de privacy van voorbijgangers, buren en andere die toevallig langs een huis met een videodeurbel lopen.
     Daarom wordt in dit onderzoek gekeken naar of de waarde in veiligheidsgevoel opweegt tegen het ongevraagd (en passief) filmen van voorbijgangers en dergelijke.
 
+
     \section{Methode}
     Dit onderzoek is een kwantitatief onderzoek om de vragen rondom de contextuele integriteit en privacy en Slimme (video) deurbellen te beantwoorden.
     Hiervoor is uitsluitend literatuuronderzoek gedaan.
@@ -93,6 +82,7 @@
     Daarnaast bieden studies van Liu (2021), Lalitha et al. (2019) en Chaudhari et al. (2020) een technisch perspectief op slimme deurbellen, waarbij veiligheid en functionaliteit empirisch worden onderzocht.
     Tot slot leveren Selinger & Durant (2022) en Kelly (2023) kritische beschouwingen over Amazon’s Ring en de maatschappelijke gevolgen van consumentgestuurde surveillance.
     Samen bieden deze bronnen een goed gebalanceerde mix van theoretische, technische en ethische invalshoeken, afkomstig uit betrouwbare en actuele academische contexten.
+
 
     \section{Beschouwing van literatuur}
     \begin{editorsonlyBox}
@@ -126,27 +116,20 @@
     Deze categorieén zijn: Monitor activities, data leakage & trigger unwanted behavior (van links naar rechts respectievelijk).
 
     \begin{table}[h]
-        \raggedright\textbf{Zijn gemonitord:}
-        \begin{tabularx}{\columnwidth}{|X|X|X|}
-            \hline
-            expliciet & impliciet & geen toestemming\\
-            \hline
-            $11+0+0 = 11$ & $11+0+4 = 15$ & $5+2+5 = 12$\\
-            \hline
-        \end{tabularx}
-        \vspace{0.01cm}
-        \\
-        \raggedright\textbf{Hebben gemonitord:}
-        \begin{tabularx}{\columnwidth}{|X|X|X|}
-            \hline
-            expliciet & impliciet & geen toestemming\\
-            \hline
-            $10+1+0 = 11$ & $2+1+4 = 7$ & $1+0+2 = 3$\\
-            \hline
-        \end{tabularx}
+        \centering
+        \begin{tabular}{@{}lll@{}}
+            \multicolumn{3}{l}{\textbf{Zijn gemonitord:}} \\ \hline
+            \multicolumn{1}{|l|}{Expliciet}     & \multicolumn{1}{l|}{Impliciet}     & \multicolumn{1}{l|}{Geen toestemming} \\ \hline
+            \multicolumn{1}{|l|}{$11+0+0 = 11$} & \multicolumn{1}{l|}{$11+0+4 = 15$} & \multicolumn{1}{l|}{$5+2+5 = 12$}     \\ \hline
+            &                                    &                                       \\
+            \multicolumn{3}{l}{\textbf{Hebben gemonitord:}} \\ \hline
+            \multicolumn{1}{|l|}{Expliciet}     & \multicolumn{1}{l|}{Impliciet}     & \multicolumn{1}{l|}{Geen toestemming} \\ \hline
+            \multicolumn{1}{|l|}{$10+1+0 = 11$} & \multicolumn{1}{l|}{$2+1+4 = 7$}   & \multicolumn{1}{l|}{$1+0+2 = 3$}      \\ \hline
+        \end{tabular}
         \caption{Aantal mensen die zijn gemonitord of hebben gemonitord op basis van toestemmingstype \parencite{moh2023characterizing}}
-       \label{table:moh}
+        \label{table:moh}
     \end{table}
+
 
     \editorsonly{Leg de tabel uit.}
 
@@ -224,7 +207,61 @@
     Het wordt dus extreem makkelijk gemaakt om je eigen buurt in de gaten te houden.
 
     \subsection{}
-    \parencite{selinger2022amazon}
+    \editorsonly{Type bron: Kritische analyse van Amazon's Ring-ecosysteem; hoe het sociale problemen veroorzaakt die niet meer te repareren zijn.}
+
+    \parencite{selinger2022amazon} gebruiken Amazon’s \textit{Ring-ecosysteem}\footnote{deurbelcamera’s, de Neighbors-app en samenwerkingen met de politie} als voorbeeld van hoe consumententechnologie ons sociale leven langzaam maar zeker kan veranderen.
+    vanuit Amazon is het een belofte van veiligheid, maar langzamerhand leidt dit tot een samenleving waarin iedereen elkaar in de gaten houdt.
+    \qoute{Amazon drafts social media content andpress statements, and provides templates, all designed to help the police [...] make persuasive requests for surveillance data.}{selinger2022amazon}{98}
+    Hun conclusie is duidelijk: Ring is geen neutraal hulpmiddel dat je beter kunt reguleren, maar dat het politieke technologie is en Amazon heeft er bewust voor gekozen om de grenzen van privacy op te rekken.
+    Bewaken wordt gepresenteerd als zorgzaamheid, en dataverzameling als vriendelijkheid onder buren.
+    Ondertussen vervagen de grenzen tussen bedrijf en staat, en verdwijnt privacy stilletjes naar de achtergrond.
+
+    \vertspace
+
+    \noindent Het argument leunt op drie belangrijke ideeën:
+    \begin{itemize}
+        \item \textbf{Langdon Winner} — sommige technologieën zijn van zichzelf politiek; ze leggen machtsverhoudingen vast in hoe ze werken.
+        \item \textbf{Alan Dafoe} — technologie stuurt de wereld niet met zekerheid, maar wél met grote waarschijnlijkheid; ze beïnvloedt de richting waarin dingen gaan.
+        \item \textbf{De glijdende helling} — als bepaalde voorwaarden eenmaal aanwezig zijn, versterkt surveillance zichzelf; het stopt niet meer.
+    \end{itemize}
+
+    \vertspace
+
+    \begin{table}[h]
+        \centering
+        \resizebox{\columnwidth}{!}{%
+            \begin{tabular}{ll}
+                \hline
+                \textbf{Probleem}                     & \textbf{Beschrijving} \\ \hline
+                \textbf{Centralisatie}               & \begin{tabular}[c]{@{}l@{}}Amazon verzamelt alle data en beslist wat ermee gebeurt —\\ bedrijfsbelangen en staatsbelangen vloeien samen.\end{tabular} \\
+                \textbf{Uitsluiting / “Wie hoort hier?”}  & \begin{tabular}[c]{@{}l@{}}Bewaking stimuleert raciale en sociale profilering:\\ wie “past” er wel of niet in de buurt?\end{tabular} \\
+                \textbf{Schijninstemming}                      & \begin{tabular}[c]{@{}l@{}}Mensen lijken toestemming te geven, maar door machtsverschillen\\ en sociale druk is die instemming leeg.\end{tabular} \\
+                \textbf{RoboCop-effect}                      & \begin{tabular}[c]{@{}l@{}}De politie krijgt toegang tot beelden van burgers,\\ waardoor een privaat bewakingssysteem ontstaat.\end{tabular} \\
+                \textbf{Vervaging tussen bedrijf en politie}    & \begin{tabular}[c]{@{}l@{}}Amazon levert kant-en-klare PR-teksten aan de politie —\\ ze schrijven feitelijk mee aan publieke communicatie.\end{tabular} \\
+                \textbf{Technologische laksheid} & \begin{tabular}[c]{@{}l@{}}Onduidelijke regels en weinig toezicht zorgen ervoor dat\\ misbruik makkelijk blijft gebeuren.\end{tabular} \\
+                \textbf{Panopticon-effect}                   & \begin{tabular}[c]{@{}l@{}}Goedkope camera’s overal maken het normaal om buren in de gaten te houden\\ en elkaar te corrigeren.\end{tabular} \\ \hline
+            \end{tabular}%
+        }
+        \caption{Tabel van de zeven sociale problemen}
+        \label{tab:sel}
+    \end{table}
+
+    De auteurs laten zien hoe al deze problemen elkaar versterken.
+    Bedrijfswinsten, angst voor criminaliteit, slimme marketing (“voel je veilig, wees een goede buur”) en raciale vooroordelen werken allemaal als motoren in hetzelfde systeem.
+    Samen vormen ze een vicieuze cirkel die het steeds moeilijker maakt om de uitbreiding van surveillance tegen te houden.
+
+    Als dit doorgaat, leidt het tot:
+    \begin{itemize}
+        \item \textbf{Surveillance als normaal onderdeel} van huis en buurt.
+        \item \textbf{Meer macht voor de politie}, via private datastromen.
+        \item \textbf{Grotere ongelijkheid}, omdat gemarginaliseerde groepen vaker worden bekeken of verdacht.
+        \item \textbf{Minder democratische controle}, want niemand houdt toezicht op wat er precies gebeurt.
+    \end{itemize}
+
+    Hun eindpunt is scherp:
+    Amazon Ring is een voorbeeld van een technologie die \textbf{niet te hervormen is}.
+    De problemen zitten ingebakken in hoe het werkt en in de sociale logica eromheen.
+    Volgens Selinger en Durant helpt geen privacysetting of toestemmingsformulier meer — sommige technologieën, zeggen ze, \textbf{zouden gewoon niet moeten bestaan}.
 
     \subsection{}
     \parencite{kelly2023ring}
@@ -234,6 +271,7 @@
 
     \subsection{}
     \parencite{tabassum2023exploring}
+
 
     \section{Conclusie}
     Duidelijk antwoord op je onderzoeksvraag.
