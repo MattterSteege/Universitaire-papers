@@ -14,6 +14,8 @@
 
 \def\dueDate            {Oktober 2025} % replace with actual due date
 
+\def\editorsVersion     {false} % true om editorsnote e.d. te tonen, false voor verbergen
+
 % ----------- Encoding & Fonts -----------
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc} % remove if using XeLaTeX/LuaLaTeX
@@ -95,7 +97,7 @@
 \usepackage{comment}
 \usepackage{ifthen}
 \newboolean{editorsversion}
-\setboolean{editorsversion}{false}  % change to false for student version
+\setboolean{editorsversion}{\editorsVersion}  % change to false for student version
 
 %----------- DONT TOUCH BELOW THIS LINE -----------
 \title{\documentTitle}
