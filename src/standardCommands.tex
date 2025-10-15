@@ -18,12 +18,11 @@
 \newcommand{\qoute}[3]{%
   % Count the number of words in the quote
   \StrCount{#1}{ }[\woordenaantal]%
-  \ifthenelse{\woordenaantal < 39}{
-    ``#1'' (\citeauthor{#2}, \citeyear{#2}, p. #3) % Kort citaat (minder dan 40 woorden)
-  }{
+  \ifthenelse{\woordenaantal < 39}{``\textit{#1}'' (\citeauthor{#2}, \citeyear{#2}, p. #3)}% Kort citaat (minder dan 40 woorden)
+  {
     \vertspace
     \begin{flushright}
-      \parbox{0.95\linewidth}{#1}
+      \parbox{0.95\linewidth}{\textit{#1}}
       (\citeauthor{#2}, \citeyear{#2}, p. #3)
     \end{flushright}
     \vertspace % Lang citaat (40 woorden of meer)
