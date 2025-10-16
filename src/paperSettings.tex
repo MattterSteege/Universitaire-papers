@@ -16,12 +16,16 @@
 
 \def\editorsVersion     {true} % true om editorsnote e.d. te tonen, false voor verbergen
 
+%----------- DONT TOUCH BELOW THIS LINE -----------
+
 % ----------- Encoding & Fonts -----------
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc} % remove if using XeLaTeX/LuaLaTeX
 
 % ----------- Page layout -----------
 \usepackage[a4paper,margin=1in]{geometry}
+\usepackage{expl3}
+\usepackage{array}
 \setlength{\columnsep}{0.333in}
 \renewcommand{\baselinestretch}{1.05}
 \setlength\parindent{1em}
@@ -99,7 +103,7 @@
 \newboolean{editorsversion}
 \setboolean{editorsversion}{\editorsVersion}  % change to false for student version
 
-%----------- DONT TOUCH BELOW THIS LINE -----------
+
 \title{\documentTitle}
 \subtitle{\documentSubtitle}
 

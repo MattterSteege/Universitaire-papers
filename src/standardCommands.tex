@@ -88,3 +88,75 @@
     \newenvironment{editorsonlyBox}{\comment}{\uncomment}
     \newcommand{\editorsfootnote}[1]{}
 }
+
+%%% ---------- TEXT SPLITTER ----------
+%    The \splittext{<text>}{<n>} command splits <text> into lines of maximum <n> characters.
+%    It inserts a line break (\\) every n characters.
+%
+%    Example usage:
+%    \splittext{This is an example of splitting text into multiple lines every n characters.}{10}
+%
+%    This will produce:
+
+\ExplSyntaxOn
+\NewDocumentCommand{\spliteveryn}{mm}
+ {
+  % #1 = number of characters per line
+  % #2 = text to split
+  \str_set:Nn \l_tmpa_str { #2 }
+  \int_zero:N \l_tmpa_int
+  \str_map_inline:Nn \l_tmpa_str
+   {
+    ##1
+    \int_incr:N \l_tmpa_int
+    \int_compare:nNnT { \l_tmpa_int } = { #1 }
+     {
+      \\
+      \int_zero:N \l_tmpa_int
+     }
+   }
+ }
+\ExplSyntaxOff
+
+
+
+%%% ---------- TABLE MACROS ----------
+%    To use the SimpleTable command, use the following format:
+%    \SimpleTable{<caption>}{<label>}{%
+%        \TableRow{<Aspect 1>}{<Description 1>}
+%        \TableRow{<Aspect 2>}{<Description 2>}
+%        ...
+%    }
+%
+%    Example usage:
+%
+%    \SimpleTable
+%    {Overzicht van de belangrijkste elementen uit \textit{Smart Doorbell Security System Using IoT}.}
+%    {tab:doorbell}
+%    {
+%        \TableRow{Probleemstelling}{Bestaande beveiligingssystemen vertrouwen enkel op gezichtsherkenning; onbekende gezichten worden niet gecontroleerd of gemeld.}
+%        \TableRow{Doel van het systeem}{Ontwikkelen van een slimme deurbel die gebruikmaakt van IoT, gezichtsherkenning, stemherkenning en bewegingsdetectie om bezoekers automatisch te identificeren.}
+%        \TableRow{Werking}{Bij het aanbellen activeert de Raspberry Pi een camera; de foto wordt vergeleken met een database van geregistreerde gezichten. Onbekende bezoekers leiden tot een e-mailmelding met foto en OTP naar de eigenaar.}
+%        \TableRow{Technologieën}{Raspberry Pi, OpenCV (beeldverwerking), DSP (stemherkenning), Speech-to-Text, e-mailserver voor OTP-verzending.}
+%    }
+
+\NewDocumentCommand{\SimpleTable}{m m m}{%
+    \begin{table}[h]
+        \centering
+        \resizebox{\columnwidth}{!}{%
+            \begin{tabular}{@{}p{0.25\linewidth}p{0.7\linewidth}@{}}
+                \toprule
+                \textbf{Aspect} & \textbf{Beschrijving} \\ \midrule
+                #3 \\ % the rows
+                \bottomrule
+            \end{tabular}%
+        }
+        \caption{#1}
+        \label{#2}
+    \end{table}%
+}
+
+% command for table rows
+\NewDocumentCommand{\TableRow}{m m}{%
+    #1 & #2 \\
+}

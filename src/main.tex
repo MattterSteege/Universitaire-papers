@@ -22,6 +22,8 @@
 
 
     \section{Introductie}
+    \spliteveryn{20}{This is an example of splitting text into multiple lines every n characters.}
+
     We leven in een tijd waarin zoveel mogelijk onderdelen van iemands leven aan het internet gekoppeld (kunnen) worden.
     Zo ook je eigen voordeur: de opkomst van zogenaamde videodeurbellen, zoals deurbellen van Ring of Eufy, is een steeds bekender gezicht in de wijken van Nederland.
     Het plus- (en tevens ook min-)punt van deze producten is dat elke (verdachte) beweging die de deurbel detecteert, wordt opgenomen en doorgestuurd naar de eigenaar.
@@ -188,6 +190,42 @@
     \editorsonly{Type bron: Technische kant van slimme deurbellen: hoe}
     \parencite{liu2021ethical}
 
+    Na uitvoerig \textit{threat modeling} en \textit{penetration testing} blijkt dat de beveiliging van de onderzochte smart video deurbel over het algemeen degelijk is, maar beslist niet foutloos. Er zijn geen directe, kritieke kwetsbaarheden gevonden, maar wel meerdere zwakke plekken die in de praktijk kunnen worden misbruikt. De belangrijkste aandachtspunten liggen bij de Android-app, de accountbeveiliging en de draadloze communicatie.
+
+    \begin{table}[h]
+        \centering
+        \resizebox{\columnwidth}{!}{%
+            \begin{tabular}{ll}
+                \hline
+                \textbf{Categorie} & \textbf{Belangrijkste bevindingen en verbeterpunten} \\ \hline
+                \textbf{Android-applicatie} & \begin{tabular}[c]{@{}l@{}}Gevoelige data kan uitlekken bij een geroot toestel doordat de app-data niet goed wordt afgeschermd.\\
+                Externe opslag moet worden vermeden en verouderde encryptie vervangen.\\
+                Certificaatvalidatie is zwak (zelfondertekende certificaten worden te snel vertrouwd)\\
+                en logging is minimaal. Positief is dat de code lastig te manipuleren is door de gesegmenteerde \texttt{.dex}-bestanden.\end{tabular} \\[0.4em]
+                \textbf{Accountbeveiliging} & \begin{tabular}[c]{@{}l@{}}Wachtwoorden worden gehasht met MD5, wat onveilig is en makkelijk te breken.\\
+                Sessies worden in URL’s doorgegeven in plaats van via veilige cookies of POST-methoden.\\
+                CAPTCHA’s beperken brute-force aanvallen effectief en het wachtwoordbeleid is voldoende streng.\end{tabular} \\[0.4em]
+                \textbf{Draadloze communicatie} & \begin{tabular}[c]{@{}l@{}}Verkeer tussen app en deurbel verloopt via HTTPS, waardoor afluisteren bemoeilijkt wordt.\\
+                Toch blijft een MitM-aanval mogelijk als de aanvaller een eigen CA weet te installeren.\\
+                Replay-aanvallen zijn theoretisch uitvoerbaar bij specifieke verzoeken (zoals uitloggen of gebruikers delen).\\
+                Deauthenticatie-aanvallen kunnen de deurbel tijdelijk uitschakelen en zelfs helpen bij het kraken van het Wi-Fi-wachtwoord.\end{tabular} \\ \hline
+            \end{tabular}%
+        }
+        \caption{Overzicht van de belangrijkste beveiligingsbevindingen van de smart video deurbel.}
+        \label{tab:doorbell-findings}
+    \end{table}
+
+    \citeauthor{liu2021ethical} benadrukt dat het uitvoeren van beveiligingstesten op IoT-apparaten essentieel is, omdat veel van deze producten nog altijd basisfouten bevatten in encryptie, databeheer en netwerkverkeer.
+    Xiaomi staat “ethisch hacken” toe zolang andere gebruikers of servers niet worden geraakt — een voorwaarde die in dit onderzoek strikt is nageleefd.
+    Alle testen zijn uitgevoerd op eigen apparaten en accounts, en de kwetsbaarheden zijn gemeld aan de fabrikant.
+
+    Hoewel Xiaomi de bevindingen formeel als \textit{“ignored”} heeft bestempeld (omdat ze moeilijk te misbruiken of structureel lastig te voorkomen zijn), blijven ze relevant voor verdere productverbetering (voor zowel Xiaomi, maar ook voor andere bedrijven die slimme deurbellen produceren).
+    De deurbel is bovendien onbeschadigd gebleven en kan nog steeds gebruikt worden, wat bijdraagt aan de duurzaamheid van het project.
+
+    De smart video deurbel is niet direct onveilig, maar zeker niet waterdicht.
+    De combinatie van verouderde cryptografie (MD5), beperkte logging en enkele kwetsbare communicatiemechanismen maakt dat de beveiliging vooral \textit{voldoende} is — niet \textit{uitstekend}.
+    De studie toont aan dat zelfs populaire IoT-producten structureel vatbaar blijven voor datalekken en manipulatie, en dat systematische beveiligingsaudits geen luxe maar noodzaak zijn.
+
     \subsection{}
     \editorsonly{Type bron: hoe maak je een eigen videodeurbel}
 
@@ -286,13 +324,46 @@
     Dat zorgt voor een scheef beeld, waar Amazon handig op inspeelt in haar marketing.
 
     Slimme huisapparaten zoals Ring en Alexa hebben miljoenen mensen ertoe gebracht om vrijwillig surveillancesystemen in hun eigen huis te installeren.
-    Dat levert bedrijven gigantische hoeveelheden data op, maar brengt ook risico’s met zich mee: ongelijkheid, etnische profilering en verlies van privacy — vaak juist voor mensen die de technologie niet eens zelf hebben gekocht. Hoewel publieke druk bedrijven soms dwingt tot aanpassingen, blijft de balans tussen gemak en controle wankel.
+    Dat levert bedrijven gigantische hoeveelheden data op, maar brengt ook risico’s met zich mee: ongelijkheid, etnische profilering en verlies van privacy — vaak juist voor mensen die de technologie niet eens zelf hebben gekocht.
+    Hoewel publieke druk bedrijven soms dwingt tot aanpassingen, blijft de balans tussen gemak en controle wankel.
 
 
     \subsection{}
     \editorsonly{Type bron: hier wordt voornamelijk gesproken over hoe je het beste een camera kan maken.}
 
-    \parencite{chaudhari2020smart}
+    De paper van \parencite{chaudhari2020smart} beschrijft een slim deurbelsysteem gebaseerd op Internet of Things (IoT) technologie.
+    Het doel is om huisbeveiliging te automatiseren met behulp van gezichtsherkenning, stemherkenning en bewegingsdetectie via een Raspberry Pi.
+    Wanneer iemand aanbelt, maakt het systeem automatisch een foto, vergelijkt die met een database van bekende gezichten en beslist of toegang wordt verleend.
+    Onbekende bezoekers krijgen geen toegang, maar er wordt een melding gestuurd naar de eigenaar met een foto en een eenmalige code (OTP). Alleen wanneer de eigenaar de code deelt, wordt de bezoeker toegevoegd aan de toegangsdatabase.
+
+    Het systeem combineert beeldverwerking, digitale signaalverwerking en spraak-naar-tekst-herkenning in één geïntegreerd beveiligingsplatform.
+    Daarmee wil het de beperkingen van bestaande enkelvoudige gezichtsherkenningssystemen overwinnen.
+
+    \begin{table}[h]
+        \centering
+        \resizebox{\columnwidth}{!}{%
+            \begin{tabular}{ll}
+                \hline
+                \textbf{Aspect} & \textbf{Beschrijving} \\ \hline
+                \textbf{Probleemstelling} & \begin{tabular}[c]{@{}l@{}}Bestaande beveiligingssystemen vertrouwen enkel op gezichtsherkenning;\\ onbekende gezichten worden niet gecontroleerd of gemeld.\end{tabular} \\
+
+                \textbf{Doel van het systeem} & \begin{tabular}[c]{@{}l@{}}Ontwikkelen van een slimme deurbel die gebruikmaakt van IoT,\\ gezichtsherkenning, stemherkenning en bewegingsdetectie\\ om bezoekers automatisch te identificeren.\end{tabular} \\
+
+                \textbf{Werking} & \begin{tabular}[c]{@{}l@{}}Bij het aanbellen activeert de Raspberry Pi een camera; de foto wordt vergeleken\\ met een database van geregistreerde gezichten. Onbekende bezoekers leiden tot\\ een e-mailmelding met foto en OTP naar de eigenaar.\end{tabular} \\
+
+                \textbf{Technologieën} & \begin{tabular}[c]{@{}l@{}}Raspberry Pi, OpenCV (beeldverwerking), DSP (stemherkenning),\\ Speech-to-Text, e-mailserver voor OTP-verzending.\end{tabular} \\
+
+                \textbf{Innovatie t.o.v. bestaande systemen} & \begin{tabular}[c]{@{}l@{}}Combinatie van gezichtsherkenning, stemverificatie en OTP-bevestiging;\\ ondersteunt ook bewegingsdetectie om indringers te herkennen\\ die niet aanbellen.\end{tabular} \\
+
+                \textbf{Verwachte resultaten} & \begin{tabular}[c]{@{}l@{}}97\% nauwkeurigheid bij gezichtsherkenning, 98\% bij stemherkenning,\\ lage energieconsumptie en realtime detectie van verdachte bewegingen.\end{tabular} \\
+
+                \textbf{Conclusie} & \begin{tabular}[c]{@{}l@{}}Een geïntegreerd IoT-beveiligingssysteem dat autonoom werkt,\\ indringers detecteert en eigenaars in realtime waarschuwt —\\ geschikt voor de verdere ontwikkeling van slimme huizen.\end{tabular} \\ \hline
+            \end{tabular}%
+        }
+        \caption{Overzicht van de belangrijkste elementen uit \textit{Smart Doorbell Security System Using IoT}.}
+        \label{tab:doorbell}
+    \end{table}
+
 
     \subsection{}
     \parencite{tabassum2023exploring}
@@ -345,6 +416,16 @@
     \section{Conclusie}
     Duidelijk antwoord op je onderzoeksvraag.
     Trek de lijn terug naar contextual integrity: veiligheid en privacy staan niet los van elkaar, maar de balans verschuift zodra technologie te veel buiten de intended context gaat. (max 1 pagina)
+
+    \SimpleTable
+    {blablablablalbalb}
+    {tab:doorbell2}
+    {
+        \TableRow{Probleemstelling}{Bestaande beveiligingssystemen vertrouwen enkel op gezichtsherkenning; onbekende gezichten worden niet gecontroleerd of gemeld.}
+        \TableRow{Doel van het systeem}{Ontwikkelen van een slimme deurbel die gebruikmaakt van IoT, gezichtsherkenning, stemherkenning en bewegingsdetectie om bezoekers automatisch te identificeren.}
+        \TableRow{Werking}{Bij het aanbellen activeert de Raspberry Pi een camera; de foto wordt vergeleken met een database van geregistreerde gezichten. Onbekende bezoekers leiden tot een e-mailmelding met foto en OTP naar de eigenaar.}
+        \TableRow{Technologieën}{Raspberry Pi, OpenCV (beeldverwerking), DSP (stemherkenning), Speech-to-Text, e-mailserver voor OTP-verzending.}
+    }
 
     \printbibliography
 
