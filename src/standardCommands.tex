@@ -151,19 +151,26 @@
 %    }
 % --- Table Header + Row commands ---
 \NewDocumentCommand{\TableHeader}{m m}{%
-    \arrayrulecolor{black!80}\specialrule{1pt}{0pt}{2pt}
     \textbf{#1} & \textbf{#2} \\ \midrule
 }
 \NewDocumentCommand{\TableHeaderThree}{m m m}{%
-    \arrayrulecolor{black!80}\specialrule{1pt}{0pt}{2pt}
     \textbf{#1} & \textbf{#2} & \textbf{#3} \\ \midrule
 }
 
 \NewDocumentCommand{\TableRow}{m m}{%
-    \textbf{#1} & #2 \\ \arrayrulecolor{black!10}\specialrule{0.5pt}{1pt}{0pt}\arrayrulecolor{black!100}
+    \textbf{#1} & #2 \\
+    \arrayrulecolor{black!10}\specialrule{0.5pt}{1pt}{0pt}\arrayrulecolor{black!100}
 }
 \NewDocumentCommand{\TableRowThree}{m m m}{%
-    #1 & #2 & #3 \\ \arrayrulecolor{black!10}\specialrule{0.5pt}{1pt}{0pt}\arrayrulecolor{black!100}
+    #1 & #2 & #3 \\
+    \arrayrulecolor{black!10}\specialrule{0.5pt}{1pt}{0pt}\arrayrulecolor{black!100}
+}
+
+\NewDocumentCommand{\TableClearRow}{m m}{%
+    \textbf{#1} & \textbf{#2} \\
+}
+\NewDocumentCommand{\TableClearRowThree}{m m m}{%
+    \textbf{#1} & \textbf{#2} & \textbf{#3} \\
 }
 
 
@@ -174,7 +181,6 @@
         \scalefont{0.75}%
         \resizebox{\columnwidth}{!}{%
             \begin{tabular}{@{}p{0.25\linewidth}p{0.70\linewidth}@{}}
-
                 #3
                 \arrayrulecolor{black!80}\specialrule{1pt}{0pt}{2pt}
             \end{tabular}%
@@ -192,7 +198,6 @@
         \scalefont{0.75}%
         \resizebox{\columnwidth}{!}{%
             \begin{tabular}{@{}p{0.33\linewidth}p{0.33\linewidth}p{0.33\linewidth}@{}}
-                \arrayrulecolor{black!80}\specialrule{1pt}{0pt}{2pt}
                 #3
                 \arrayrulecolor{black!80}\specialrule{1pt}{0pt}{2pt}
             \end{tabular}%
