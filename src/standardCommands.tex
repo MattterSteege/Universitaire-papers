@@ -107,17 +107,27 @@
   \int_zero:N \l_tmpa_int
   \str_map_inline:Nn \l_tmpa_str
    {
-    ##1
-    \int_incr:N \l_tmpa_int
-    \int_compare:nNnT { \l_tmpa_int } = { #1 }
-     {
-      \\
-      \int_zero:N \l_tmpa_int
-     }
+       ##1
+       \int_incr:N \l_tmpa_int
+       \int_compare:nNnT { \l_tmpa_int } = { #1 }
+           {
+           \\
+           \int_zero:N \l_tmpa_int
+       }
    }
  }
 \ExplSyntaxOff
 
+% --- Helper macro to check if argument is empty ---
+\makeatletter
+\newcommand{\IfNonEmpty}[2]{%
+    \if\relax\detokenize{#1}\relax
+    % empty → do nothing
+    \else
+    #2%
+    \fi
+}
+\makeatother
 
 
 %%% ---------- TABLE MACROS ----------
@@ -139,24 +149,65 @@
 %        \TableRow{Werking}{Bij het aanbellen activeert de Raspberry Pi een camera; de foto wordt vergeleken met een database van geregistreerde gezichten. Onbekende bezoekers leiden tot een e-mailmelding met foto en OTP naar de eigenaar.}
 %        \TableRow{Technologieën}{Raspberry Pi, OpenCV (beeldverwerking), DSP (stemherkenning), Speech-to-Text, e-mailserver voor OTP-verzending.}
 %    }
+% --- Table Header + Row commands ---
+\NewDocumentCommand{\TableHeader}{m m}{%
+    \arrayrulecolor{black!80}\specialrule{1pt}{0pt}{2pt}
+    \textbf{#1} & \textbf{#2} \\ \midrule
+}
+\NewDocumentCommand{\TableHeaderThree}{m m m}{%
+    \arrayrulecolor{black!80}\specialrule{1pt}{0pt}{2pt}
+    \textbf{#1} & \textbf{#2} & \textbf{#3} \\ \midrule
+}
 
-\NewDocumentCommand{\SimpleTable}{m m m}{%
-    \begin{table}[h]
+\NewDocumentCommand{\TableRow}{m m}{%
+    \textbf{#1} & #2 \\ \arrayrulecolor{black!10}\specialrule{0.5pt}{1pt}{0pt}\arrayrulecolor{black!100}
+}
+\NewDocumentCommand{\TableRowThree}{m m m}{%
+    #1 & #2 & #3 \\ \arrayrulecolor{black!10}\specialrule{0.5pt}{1pt}{0pt}\arrayrulecolor{black!100}
+}
+
+
+% --- Updated 2-column version ---
+\newcommand{\SimpleTableTwo}[3]{%
+    \begin{table}[h!]
         \centering
+        \scalefont{0.75}%
         \resizebox{\columnwidth}{!}{%
-            \begin{tabular}{@{}p{0.25\linewidth}p{0.7\linewidth}@{}}
-                \toprule
-                \textbf{Aspect} & \textbf{Beschrijving} \\ \midrule
-                #3 \\ % the rows
-                \bottomrule
+            \begin{tabular}{@{}p{0.25\linewidth}p{0.70\linewidth}@{}}
+
+                #3
+                \arrayrulecolor{black!80}\specialrule{1pt}{0pt}{2pt}
             \end{tabular}%
-        }
-        \caption{#1}
-        \label{#2}
+        }%
+        \scalefont{1}%
+        \IfNonEmpty{#1}{\caption{#1}}%
+        \IfNonEmpty{#2}{\label{#2}}%
     \end{table}%
 }
 
-% command for table rows
-\NewDocumentCommand{\TableRow}{m m}{%
-    #1 & #2 \\
+% --- Updated 3-column version ---
+\newcommand{\SimpleTableThree}[3]{%
+    \begin{table}[h!]
+        \centering
+        \scalefont{0.75}%
+        \resizebox{\columnwidth}{!}{%
+            \begin{tabular}{@{}p{0.33\linewidth}p{0.33\linewidth}p{0.33\linewidth}@{}}
+                \arrayrulecolor{black!80}\specialrule{1pt}{0pt}{2pt}
+                #3
+                \arrayrulecolor{black!80}\specialrule{1pt}{0pt}{2pt}
+            \end{tabular}%
+        }%
+        \scalefont{1}%
+        \IfNonEmpty{#1}{\caption{#1}}%
+        \IfNonEmpty{#2}{\label{#2}}%
+    \end{table}%
+}
+
+% --- Smart dispatcher: decides between 2 or 3 cols automatically ---
+\NewDocumentCommand{\SimpleTable}{m m m}{%
+    \IfSubStr{#3}{\TableHeaderThree}{%
+        \SimpleTableThree{#1}{#2}{#3}%
+    }{%
+        \SimpleTableTwo{#1}{#2}{#3}%
+    }%
 }
