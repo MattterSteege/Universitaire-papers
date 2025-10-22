@@ -131,85 +131,84 @@
 
 
 % Usage:
-% \begin{SimpleTable}[<alignment>]{<caption>}{<label>}
-%   \TableHeader{A & B & C}
-%   \TableRow{foo & bar & baz}
-%   \TableFullRow[3]{--- Section Break ---}
-%   \TableBreak
-% \end{SimpleTable}
+%    % 2 columns
+%    \begin{SimpleTable}[<alignment>]{Caption}{label}
+%        \TableHeader{Col1 & Col2}
+%        \TableRow{Data1 & Data2}
+%        \TableRow{Data3 & Data4}
+%    \end{SimpleTable}
 %
-% [<alignment>] → optional (default = llll)
+%    % 3 columns
+%    \begin{SimpleTable}[<alignment>]{Caption}{label}
+%        \TableHeader{Col1 & Col2 & Col3}
+%        \TableRow{Data1 & Data2 & Data3}
+%        \TableRow{Data4 & Data5 & Data6}
+%    \end{SimpleTable}
+%
+%    % 4 columns
+%    \begin{SimpleTable}[<alignment>]{Caption}{label}
+%        \TableHeader{Col1 & Col2 & Col3 & Col4}
+%        \TableRow{Data1 & Data2 & Data3 & Data4}
+%        \TableRow{Data5 & Data6 & Data7 & Data8}
+%    \end{SimpleTable}
+%
+% [<alignment>] → required, e.g. s{0.5}s{0.5} for 2 equal columns, amount of s{} defines relative width and you need as much s{} as columns
 % <caption> / <label> → optional (use {} to skip)
 % ======================================================
+\newcolumntype{s}[1]{>{\hsize=#1\hsize\relax\arraybackslash}X}
 
-% --- Table styling ---
-\definecolor{TableGray}{gray}{0.9}
+\ExplSyntaxOn
+\NewExpandableDocumentCommand{\GenerateColumns}{m}
+{
+    \clist_set:Nn \l_tmpa_clist { #1 }
+    \clist_use:Nn \l_tmpa_clist { ~s }
+    % OR simpler:
+    % \clist_map_inline:Nn \l_tmpa_clist { s{##1} }
+}
+\ExplSyntaxOff
 
-% Simple, safe table environment
-% Usage:
-% \begin{SimpleTable}[<alignment>]{<caption>}{<label>}
-%   ... rows ...
-% \end{SimpleTable}
-%
-% Optional [<alignment>] defaults to 'llll' but you can pass 'lcr' or 'lll...'
-\newsavebox{\SimpleTableBox}
-\newenvironment{SimpleTable}[3][llll]{%
-    \begin{table}[H]
+\NewEnviron{SimpleTable}[3][1,1]{%
+    \begin{table}[h]
         \centering
-        \begin{lrbox}{\SimpleTableBox}
-            \begin{tabular}{#1}
-                \toprule
-                }{%
-                \bottomrule
-            \end{tabular}
-        \end{lrbox}
-        \resizebox{\columnwidth}{!}{\usebox{\SimpleTableBox}}
-        \ifx&#2&\else\caption{#2}\fi
-        \ifx&#3&\else\label{#3}\fi
-        \normalsize
+        \scalefont{0.75}
+        \begin{tabularx}{\columnwidth}{#1}
+            \BODY
+            \arrayrulecolor{black!80}\specialrule{1pt}{0pt}{0pt}\arrayrulecolor{black}
+        \end{tabularx}
+        \IfNonEmpty{#2}{\caption{#2}}%
+        \IfNonEmpty{#3}{\label{#3}}%
     \end{table}
 }
 
-% ======================================================
-% ===============  ROW TYPE SHORTCUTS  =================
-% ======================================================
-
-% --- Header row (bold text + midrule) ---
-\newcommand{\TableHeader}[1]{%
-    \textbf{#1} \\
-    \midrule
+% Table header command - just bold the content manually
+\NewDocumentCommand{\TableHeader}{>{\SplitArgument{5}{&}}m}{%
+    \tableheaderaux#1%
 }
 
-% --- Standard data row (thin light-gray line) ---
-\newcommand{\TableRow}[1]{%
-    #1 \\
-    \arrayrulecolor{black!10}
-    \specialrule{0.5pt}{1pt}{0pt}
-    \arrayrulecolor{black}
+\NewDocumentCommand{\tableheaderaux}{mmmmmm}{%
+    \IfValueT{#1}{\textbf{#1}}%
+    \IfValueT{#2}{& \textbf{#2}}%
+    \IfValueT{#3}{& \textbf{#3}}%
+    \IfValueT{#4}{& \textbf{#4}}%
+    \IfValueT{#5}{& \textbf{#5}}%
+    \IfValueT{#6}{& \textbf{#6}}%
+    \\ \arrayrulecolor{black!80}\specialrule{1pt}{0pt}{0pt}\arrayrulecolor{black}
 }
 
-% --- Full-span row (e.g. section label or note) ---
-\newcommand{\TableFullRow}[2][4]{%
-% #1 = number of columns (default = 4)
-% #2 = text content
-    \multicolumn{#1}{l}{#2} \\
-    \arrayrulecolor{black!20}
-    \specialrule{0.5pt}{1pt}{0pt}
-    \arrayrulecolor{black}
+% Table row command
+\NewDocumentCommand{\TableRow}{>{\SplitArgument{5}{&}}m}{%
+    \tablerowaux#1%
 }
 
-% --- Section break (thick line) ---
-\newcommand{\TableBreak}{%
-    \arrayrulecolor{black!80}
-    \specialrule{1pt}{0pt}{2pt}
-    \arrayrulecolor{black}
+\NewDocumentCommand{\tablerowaux}{mmmmmm}{%
+    \IfValueT{#1}{#1}%
+    \IfValueT{#2}{& #2}%
+    \IfValueT{#3}{& #3}%
+    \IfValueT{#4}{& #4}%
+    \IfValueT{#5}{& #5}%
+    \IfValueT{#6}{& #6}%
+    \\ \arrayrulecolor{black!10}\specialrule{0.5pt}{1pt}{0pt}\arrayrulecolor{black}
 }
 
-% --- Shaded row (for emphasis or totals) ---
-\newcommand{\TableRowGray}[1]{%
-    \rowcolor{TableGray}
-    #1 \\
-    \arrayrulecolor{black!10}
-    \specialrule{0.5pt}{1pt}{0pt}
-    \arrayrulecolor{black}
-}
+% empty row - just bold the content manually
+\NewDocumentCommand{\TableEmpty}{}{\\}

@@ -152,7 +152,8 @@
 
     Na uitvoerig \textit{threat modeling} en \textit{penetration testing} concludeert \parencite{liu2021ethical} dat de onderzochte smart video deurbel over het algemeen degelijk maar niet foutloos is. Er werden geen directe, kritieke zero-days gevonden, maar er zijn meerdere zwakke plekken die in de praktijk misbruikt kunnen worden — met name in de Android-app, de accountbeveiliging en de draadloze communicatie. Belangrijk is dat deze zwaktes vooral aantonen dat privacy geen gegeven is; het is iets dat voortdurend verdedigd moet worden.
 
-    \begin{SimpleTable}[ll]{Overzicht van de belangrijkste beveiligingsbevindingen van de smart video deurbel} {tab:doorbell-findings}
+    % 2 columns
+    \begin{SimpleTable}[s{0.5}s{1.5}]{Overzicht van de belangrijkste beveiligingsbevindingen van de smart video deurbel}{tab:doorbell-findings}
         \TableHeader{Categorie & Belangrijkste bevindingen en verbeterpunten}
         \TableRow{Android-applicatie & Gevoelige data kan uitlekken bij een geroot toestel doordat de app-data niet goed wordt afgeschermd. Externe opslag moet worden vermeden en verouderde encryptie vervangen. Certificaatvalidatie is zwak (zelfondertekende certificaten worden te snel vertrouwd) en logging is minimaal. Positief is dat de code lastig te manipuleren is door de gesegmenteerde .dex-bestanden.}
         \TableRow{Accountbeveiliging & Wachtwoorden worden gehasht met MD5, wat onveilig is en makkelijk te breken. Sessies worden in URL's doorgegeven in plaats van via veilige cookies of POST-methoden. CAPTCHA's beperken brute-force aanvallen effectief en het wachtwoordbeleid is voldoende streng.}
@@ -169,17 +170,14 @@
 
     \parencite{chaudhari2020smart} benaderen het probleem vanuit het design van een slim deurbelsysteem: een integratie van gezichtsherkenning, stemherkenning en bewegingsdetectie (Raspberry Pi + OpenCV + DSP + Speech-to-Text). Hun focus ligt op functionaliteit en automatische besluitvorming — bij het aanbellen wordt een foto gemaakt die vergeleken wordt met een database; onbekende bezoekers genereren een melding met foto en een OTP naar de eigenaar, en alleen met die OTP kan iemand uiteindelijk worden toegevoegd.
 
-%    \SimpleTable
-%    {Overzicht van de belangrijkste elementen uit \textit{Smart Doorbell Security System Using IoT}.}
-%    {tab:doorbell}
-%    {
-%        \SimpleTableHeader{Aspect}{Beschrijving}
-%        \SimpleTableRow{Probleemstelling}{Bestaande beveiligingssystemen vertrouwen enkel op gezichtsherkenning; onbekende gezichten worden niet gecontroleerd of gemeld.}
-%        \SimpleTableRow{Doel van het systeem}{Ontwikkelen van een slimme deurbel die gebruikmaakt van IoT, gezichtsherkenning, stemherkenning en bewegingsdetectie om bezoekers automatisch te identificeren.}
-%        \SimpleTableRow{Werking}{Bij het aanbellen activeert de Raspberry Pi een camera; de foto wordt vergeleken met een database van geregistreerde gezichten. Onbekende bezoekers leiden tot een e-mailmelding met foto en OTP naar de eigenaar.}
-%        \SimpleTableRow{Technologieën}{Raspberry Pi, OpenCV (beeldverwerking), DSP (stemherkenning), Speech-to-Text, e-mailserver voor OTP-verzending.}
-%    }
-%    {2}
+    % 2 columns
+    \begin{SimpleTable}[s{0.5}s{1.5}]{Overzicht van de belangrijkste elementen uit \textit{Smart Doorbell Security System Using IoT}}{tab:doorbell}
+        \TableHeader{Aspect & Beschrijving}
+        \TableRow{Probleemstelling & Bestaande beveiligingssystemen vertrouwen enkel op gezichtsherkenning; onbekende gezichten worden niet gecontroleerd of gemeld.}
+        \TableRow{Doel van het systeem & Ontwikkelen van een slimme deurbel die gebruikmaakt van IoT, gezichtsherkenning, stemherkenning en bewegingsdetectie om bezoekers automatisch te identificeren.}
+        \TableRow{Werking & Bij het aanbellen activeert de Raspberry Pi een camera; de foto wordt vergeleken met een database van geregistreerde gezichten. Onbekende bezoekers leiden tot een e-mailmelding met foto en OTP naar de eigenaar.}
+        \TableRow{Technologieën & Raspberry Pi, OpenCV (beeldverwerking), DSP (stemherkenning), Speech-to-Text, e-mailserver voor OTP-verzending.}
+    \end{SimpleTable}
 
     \noindent
     Technisch interessant — en in bepaalde gevallen nuttig — maar deze aanpak schuurt meteen met privacyprincipes: gezichts- en spraakdata zijn biometrisch en gevoelig. Het systeem lost één tekort op (valse acceptatie door alleen gezichtsherkenning) door meerdere sensorstromen te combineren, maar vergroot tegelijkertijd de hoeveelheid persoonlijke data die wordt vastgelegd en verwerkt. In termen van privacy-theorie is dat precies de paradox: meer \emph{zekerheid} vergt vaak meer \emph{data} — en dus meer risico.
@@ -229,20 +227,16 @@
 
     \vertspace
 
-%    \SimpleTable
-%    {Tabel van de zeven sociale problemen}
-%    {tab:sel}
-%    {
-%        \SimpleTableHeader{Probleem}{Beschrijving}
-%        \SimpleTableRow{Centralisatie}{Amazon verzamelt alle data en beslist wat ermee gebeurt - bedrijfsbelangen en staatsbelangen vloeien samen.}
-%        \SimpleTableRow{Uitsluiting / "Wie hoort hier?"}{Bewaking stimuleert etnische en sociale profilering: wie "past" er wel of niet in de buurt?}
-%        \SimpleTableRow{Schijninstemming}{Mensen lijken toestemming te geven, maar door machtsverschillen en sociale druk is die instemming leeg.}
-%        \SimpleTableRow{RoboCop-effect}{De politie krijgt toegang tot beelden van burgers, waardoor een privaat bewakingssysteem ontstaat.}
-%        \SimpleTableRow{Vervaging tussen bedrijf en politie}{Amazon levert kant-en-klare PR-teksten aan de politie - ze schrijven feitelijk mee aan publieke communicatie.}
-%        \SimpleTableRow{Technologische laksheid}{Onduidelijke regels en weinig toezicht zorgen ervoor dat misbruik makkelijk blijft gebeuren.}
-%        \SimpleTableRow{Panopticon-effect}{Goedkope camera's overal maken het normaal om buren in de gaten te houden en elkaar te corrigeren.}
-%    }
-%    {2}
+    \begin{SimpleTable}[s{0.3}s{1.2}]{Overzicht van de zeven sociale problemen rond Amazon Ring volgens \citeauthor{selinger2022amazon}}{tab:sel}
+        \TableHeader{Probleem & Beschrijving}
+        \TableRow{Centralisatie & Amazon verzamelt alle data en beslist wat ermee gebeurt - bedrijfsbelangen en staatsbelangen vloeien samen.}
+        \TableRow{Uitsluiting / "Wie hoort hier?" & Bewaking stimuleert etnische en sociale profilering: wie "past" er wel of niet in de buurt?}
+        \TableRow{Schijninstemming & Mensen lijken toestemming te geven, maar door machtsverschillen en sociale druk is die instemming leeg.}
+        \TableRow{RoboCop-effect & De politie krijgt toegang tot beelden van burgers, waardoor een privaat bewakingssysteem ontstaat.}
+        \TableRow{Vervaging tussen bedrijf en politie & Amazon levert kant-en-klare PR-teksten aan de politie - ze schrijven feitelijk mee aan publieke communicatie.}
+        \TableRow{Technologische laksheid & Onduidelijke regels en weinig toezicht zorgen ervoor dat misbruik makkelijk blijft gebeuren.}
+        \TableRow{Panopticon-effect & Goedkope camera's overal maken het normaal om buren in de gaten te houden en elkaar te corrigeren.}
+    \end{SimpleTable}
 
     \noindent \citeauthor{selinger2022amazon} laten zien hoe al deze problemen elkaar versterken.
     Bedrijfswinsten, angst voor criminaliteit, slimme marketing ("voel je veilig, wees een goede buur") en etnische vooroordelen werken allemaal als motoren in hetzelfde systeem.
@@ -296,23 +290,15 @@
 
     Voor dit onderzoek is alleen gekeken naar het apparaattype "smart cameras".
     Moh et al. onderzochten tien verschillende categorieën, maar slechts drie waren relevant: Monitor activities, Data leakage en Trigger unwanted behavior.
-    Deze categorieën zijn samengevat in Tabel \ref{tab:moh1} en \ref{tab:moh2}.
+    Deze categorieën zijn samengevat in Tabel \ref{tab:moh1}.
 
-%    \SimpleTable
-%    {Aantal mensen die zijn gemonitord op basis van toestemmingstype \parencite{moh2023characterizing}}
-%    {tab:moh1}
-%    {
-%        \SimpleTableHeader{Expliciet}{Implcitiet}{Geen toestemming}
-%        \SimpleTableRow{$11+0+0=11$}{$11+0+4=15$}{$5+2+5=12$}
-%    }
-
-%    \SimpleTable
-%    {Aantal mensen die hebben gemonitord op basis van toestemmingstype \parencite{moh2023characterizing}}
-%    {tab:moh2}
-%    {
-%        \SimpleTableHeader{Expliciet}{Implcitiet}{Geen toestemming}
-%        \SimpleTableRow{$10+1+0=11$}{$2+1+4=7$}{$1+0+2=3$}
-%    }
+    \begin{SimpleTable}[s{0.3}s{0.3}s{0.3}s{0.3}]{Aantal mensen die zijn of hebben gemonitord op basis van toestemmingstype \parencite{moh2023characterizing}}{tab:moh1}
+        \TableHeader{Expliciet & Impliciet & Geen toestemming}
+        \TableRow{$11+0+0=11$ & $11+0+4=15$ & $5+2+5=12$}
+        \TableEmpty{}
+        \TableHeader{Expliciet & Impliciet & Geen toestemming}
+        \TableRow{$10+1+0=11$ & $2+1+4=7$ & $1+0+2=3$}
+    \end{SimpleTable}
 
     \parencite{tabassum2023exploring} onderzocht hoe mensen hun videodeurbel gebruiken.
     Zelfs als gebruikers de mogelijkheid hebben privacyinstellingen aan te zetten, blijkt dit vaak niet te gebeuren.
