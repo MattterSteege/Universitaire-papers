@@ -14,7 +14,6 @@
 \newcommand{\lorem}{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget tortor a urna ornare pellentesque. Integer sit amet purus nec sem iaculis euismod. Duis at ipsum eu libero pharetra egestas. Quisque eleifend odio velit, at sollicitudin metus dictum eu. Integer nec mi congue, gravida nibh sed, faucibus mauris. Sed vel ipsum lobortis felis gravida dignissim. Curabitur vestibulum turpis eu orci lacinia consectetur.}
 
 % APA style qoutes
-\usepackage{xstring}
 \newcommand{\qoute}[3]{%
   % Count the number of words in the quote
   \StrCount{#1}{ }[\woordenaantal]%
@@ -130,31 +129,29 @@
 \makeatother
 
 
+% ==============================================================================
+% SIMPLE TABLE ENVIRONMENT
+% ------------------------------------------------------------------------------
+% The SimpleTable environment provides a consistent, styled table layout
+% with optional caption and label support.
+%
 % Usage:
-%    % 2 columns
-%    \begin{SimpleTable}[<alignment>]{Caption}{label}
-%        \TableHeader{Col1 & Col2}
-%        \TableRow{Data1 & Data2}
-%        \TableRow{Data3 & Data4}
-%    \end{SimpleTable}
+%   \begin{SimpleTable}[<column spec>]{<caption>}{<label>}
+%       \TableHeader{Col A & Col B & Col C}
+%       \TableRow{Data 1 & Data 2 & Data 3}
+%       \TableSubHeader{Subheader A & Subheader B & Subheader C}
+%       \TableRow{Data X & Data Y & Data Z}
+%       \TableHighlightRow{Important & Highlighted & Row}
+%       \TableNote{This is an example note below the table.}
+%   \end{SimpleTable}
 %
-%    % 3 columns
-%    \begin{SimpleTable}[<alignment>]{Caption}{label}
-%        \TableHeader{Col1 & Col2 & Col3}
-%        \TableRow{Data1 & Data2 & Data3}
-%        \TableRow{Data4 & Data5 & Data6}
-%    \end{SimpleTable}
+% Arguments:
+%   [<column spec>] : optional tabularx column definition (default: s{1} s{1})
+%                     e.g., 's{1} s{1} s{1}' or 's{1.2} s{1.8}', everything is relative to eachother
+%   {<caption>}     : optional table caption (omit if empty)
+%   {<label>}       : optional table label for referencing  (omit if empty)
 %
-%    % 4 columns
-%    \begin{SimpleTable}[<alignment>]{Caption}{label}
-%        \TableHeader{Col1 & Col2 & Col3 & Col4}
-%        \TableRow{Data1 & Data2 & Data3 & Data4}
-%        \TableRow{Data5 & Data6 & Data7 & Data8}
-%    \end{SimpleTable}
-%
-% [<alignment>] → required, e.g. s{0.5}s{0.5} for 2 equal columns, amount of s{} defines relative width and you need as much s{} as columns
-% <caption> / <label> → optional (use {} to skip)
-% ======================================================
+% ==============================================================================
 \newcolumntype{s}[1]{>{\hsize=#1\hsize\relax\arraybackslash}X}
 
 \ExplSyntaxOn
@@ -162,12 +159,12 @@
 {
     \clist_set:Nn \l_tmpa_clist { #1 }
     \clist_use:Nn \l_tmpa_clist { ~s }
-    % OR simpler:
+% OR simpler:
     % \clist_map_inline:Nn \l_tmpa_clist { s{##1} }
 }
 \ExplSyntaxOff
 
-\NewEnviron{SimpleTable}[3][1,1]{%
+\NewEnviron{SimpleTable}[3][s{1} s{1}]{%
     \begin{table}[h]
         \centering
         \scalefont{0.75}
@@ -177,14 +174,15 @@
         \end{tabularx}
         \IfNonEmpty{#2}{\caption{#2}}%
         \IfNonEmpty{#3}{\label{#3}}%
-    \end{table}
+    \end{table}%
 }
 
-% Table header command - just bold the content manually
+% --- Table Styling Macros ------------------------------------------------------
+
+% ========== Header Row ==========
 \NewDocumentCommand{\TableHeader}{>{\SplitArgument{5}{&}}m}{%
     \tableheaderaux#1%
 }
-
 \NewDocumentCommand{\tableheaderaux}{mmmmmm}{%
     \IfValueT{#1}{\textbf{#1}}%
     \IfValueT{#2}{& \textbf{#2}}%
@@ -195,11 +193,10 @@
     \\ \arrayrulecolor{black!80}\specialrule{1pt}{0pt}{0pt}\arrayrulecolor{black}
 }
 
-% Table row command
+% ========== Normal Row ==========
 \NewDocumentCommand{\TableRow}{>{\SplitArgument{5}{&}}m}{%
     \tablerowaux#1%
 }
-
 \NewDocumentCommand{\tablerowaux}{mmmmmm}{%
     \IfValueT{#1}{#1}%
     \IfValueT{#2}{& #2}%
@@ -210,5 +207,46 @@
     \\ \arrayrulecolor{black!10}\specialrule{0.5pt}{1pt}{0pt}\arrayrulecolor{black}
 }
 
-% empty row - just bold the content manually
+% ========== Empty Row ==========
 \NewDocumentCommand{\TableEmpty}{}{\\}
+
+% ========== Subheader Row ==========
+\NewDocumentCommand{\TableSubHeader}{>{\SplitArgument{5}{&}}m}{%
+    \tablesubheaderaux#1%
+}
+\NewDocumentCommand{\tablesubheaderaux}{mmmmmm}{%
+    \IfValueT{#1}{\underline{\textbf{#1}}}%
+    \IfValueT{#2}{& \underline{\textbf{#2}}}%
+    \IfValueT{#3}{& \underline{\textbf{#3}}}%
+    \IfValueT{#4}{& \underline{\textbf{#4}}}%
+    \IfValueT{#5}{& \underline{\textbf{#5}}}%
+    \IfValueT{#6}{& \underline{\textbf{#6}}}%
+    \\[1pt]
+}
+
+% ========== Highlight Row ==========
+\NewDocumentCommand{\TableHighlightRow}{>{\SplitArgument{5}{&}}m}{%
+    \tablehighlightaux#1%
+}
+\NewDocumentCommand{\tablehighlightaux}{mmmmmm}{%
+    \IfValueT{#1}{\textbf{#1}}%
+    \IfValueT{#2}{& \textbf{#2}}%
+    \IfValueT{#3}{& \textbf{#3}}%
+    \IfValueT{#4}{& \textbf{#4}}%
+    \IfValueT{#5}{& \textbf{#5}}%
+    \IfValueT{#6}{& \textbf{#6}}%
+    \\ \arrayrulecolor{black!50}\specialrule{0.8pt}{1pt}{2pt}\arrayrulecolor{black}
+}
+
+% ========== Note Row ==========
+\NewDocumentCommand{\TableNote}{m}{%
+    \\[-2pt]\multicolumn{99}{l}{\footnotesize\textit{#1}} \\[3pt]%
+}
+
+% ========== Section Break ==========
+\NewDocumentCommand{\TableSectionBreak}{}{%
+    \\[-1pt]\arrayrulecolor{black!70}\specialrule{1.2pt}{3pt}{3pt}\arrayrulecolor{black}
+}
+
+% ========== Spacer ==========
+\NewDocumentCommand{\TableSpacer}{}{\\[-3pt]}
