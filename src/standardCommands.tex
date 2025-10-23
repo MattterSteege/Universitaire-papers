@@ -1,58 +1,151 @@
-% --------------------------------
-% This file contains a custom set
-% of commands to make writing
-% LaTeX easier
-% --------------------------------
+% ============================================================
+% LATEX CUSTOM COMMANDS LIBRARY
+% Author: Matt
+% Version: v1.0
+% ------------------------------------------------------------
+% CONTENTS:
+%   1.  SPACING & LAYOUT UTILITIES
+%   2.  TEXT PLACEHOLDER & FORMATTING UTILITIES
+%   3.  EDITOR TOOLS & COMMENTS
+%   4.  TEXT PROCESSING UTILITIES
+%   5.  SIMPLE TABLE ENVIRONMENT
+%
+% This library provides a modular set of reusable LaTeX commands
+% to streamline writing, reviewing, and formatting workflow.
+%
+% ============================================================
 
-% makes 0.05 inches of horizontal space
-\newcommand{\vertspace}{\vspace{0.05in}}
 
-% writes centered italic text 80% width of the page/column and gives top & bottom padding
-\newcommand{\question}[1]{\vertspace\begin{center}\parbox{0.8\linewidth}{\centering\textit{#1}}\end{center}\vertspace}
+% ============================================================
+% 1. SPACING & LAYOUT UTILITIES
+% ============================================================
+%
+% These commands simplify vertical spacing and layout adjustments.
+% Instead of manually using \vspace repeatedly, these commands
+% make your document cleaner and more readable.
+%
+% Usage examples:
+%
+%   \vsmall    → Small vertical gap (~0.1 cm)
+%   \vmed      → Medium vertical gap (~0.3 cm)
+%   \vlarge    → Large vertical gap (~0.6 cm)
+%
+% ============================================================
+\newcommand{\vsmall}{\vspace{0.1cm}}
+\newcommand{\vmed}{\vspace{0.3cm}}
+\newcommand{\vlarge}{\vspace{0.6cm}}
 
-% Writes a single paragraph of Lorum Ipsum text
-\newcommand{\lorem}{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget tortor a urna ornare pellentesque. Integer sit amet purus nec sem iaculis euismod. Duis at ipsum eu libero pharetra egestas. Quisque eleifend odio velit, at sollicitudin metus dictum eu. Integer nec mi congue, gravida nibh sed, faucibus mauris. Sed vel ipsum lobortis felis gravida dignissim. Curabitur vestibulum turpis eu orci lacinia consectetur.}
-
-% APA style qoutes
-\newcommand{\qoute}[3]{%
-  % Count the number of words in the quote
-  \StrCount{#1}{ }[\woordenaantal]%
-  \ifthenelse{\woordenaantal < 39}{``\textit{#1}'' (\citeauthor{#2}, \citeyear{#2}, p. #3)}% Kort citaat (minder dan 40 woorden)
-  {
-    \vertspace
-    \begin{flushright}
-      \parbox{0.95\linewidth}{\textit{#1}}
-      (\citeauthor{#2}, \citeyear{#2}, p. #3)
-    \end{flushright}
-    \vertspace % Lang citaat (40 woorden of meer)
-  }
+% ------------------------------------------------------------
+% Centered italicized question or section prompt
+%
+% Usage:
+%   \question{What is the impact of this design choice?}
+% ------------------------------------------------------------
+\newcommand{\question}[1]{%
+    \vsmall%
+    \begin{center}%
+        \parbox{0.8\linewidth}{\centering\textit{#1}}%
+    \end{center}%
+    \vsmall%
 }
 
-% cites like \parencite[prenote][postnote]{cite}
+
+% ============================================================
+% 2. TEXT PLACEHOLDER & FORMATTING UTILITIES
+% ============================================================
+%
+% Commands for generating placeholder text, APA-style quotes,
+% and custom citation formatting.
+%
+% Includes:
+%   - \lorem                → Generates a block of lorem ipsum text
+%   - \qoute{txt}{key}{p.}  → APA-style quotes with word count logic
+%   - \prepostparencite[...]{}{} → Adds pre/post text to citations
+%
+% ============================================================
+
+% --- Lorem Ipsum Placeholder --------------------------------
+%
+% Usage:
+%   \lorem
+%
+% Outputs a single paragraph of lorem ipsum placeholder text.
+% ------------------------------------------------------------
+\newcommand{\lorem}{%
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget tortor a urna ornare pellentesque.
+    Integer sit amet purus nec sem iaculis euismod. Duis at ipsum eu libero pharetra egestas.
+    Quisque eleifend odio velit, at sollicitudin metus dictum eu. Integer nec mi congue,
+    gravida nibh sed, faucibus mauris. Sed vel ipsum lobortis felis gravida dignissim.
+    Curabitur vestibulum turpis eu orci lacinia consectetur.
+}
+
+% --- APA Style Quote Command --------------------------------
+%
+% Automatically formats quotes following APA style.
+% Short quotes (<40 words) are inline; long quotes are right-aligned blocks.
+%
+% Usage:
+%   \qoute{<quote text>}{<bibkey>}{<page>}
+%
+% Example:
+%   \qoute{Design is intelligence made visible.}{rand2020}{42}
+% ------------------------------------------------------------
+\newcommand{\qoute}[3]{%
+    \StrCount{#1}{ }[\woordenaantal]%
+    \ifthenelse{\woordenaantal < 39}{%
+        ``\textit{#1}'' (\citeauthor{#2}, \citeyear{#2}, p.~#3)%
+    }{%
+        \vsmall%
+        \begin{flushright}%
+            \parbox{0.95\linewidth}{\textit{#1}}%
+            (\citeauthor{#2}, \citeyear{#2}, p.~#3)%
+        \end{flushright}%
+        \vsmall%
+    }%
+}
+
+% --- Parenthetical Citation with Pre/Post Text --------------
+%
+% Usage:
+%   \prepostparencite[see][, for more info]{key}
+%
+% Example:
+%   \prepostparencite[see][, for an overview]{doe2022}
+%
+% Produces: (see Doe, 2022, for an overview)
+% ------------------------------------------------------------
 \newcommand{\prepostparencite}[3][]{%
     (#1 \citeauthor{#3}, \citeyear{#3}#2)%
 }
 
 
-
-% command for Editor's notes and comments
-% defines custom commands:
-% - \editorsonly{...} for inline comments
-% - \begin{editorsonlyBox} ... \end{editorsonlyBox} for boxed comments
-% - \editorsfootnote{...} for comments in footnotes
+% ============================================================
+% 3. EDITOR TOOLS & COMMENTS
+% ============================================================
+%
+% This block defines tools for editors and reviewers to leave
+% inline comments, boxed remarks, or red footnotes.
+%
+% Controlled by the boolean \boolean{editorsversion}.
+% When false, all editor content is hidden.
+%
+% Provides:
+%   - \editorsonly{<text>}       → Inline comment
+%   - \begin{editorsonlyBox}...  → Boxed comment block
+%   - \editorsfootnote{<text>}   → Red footnote
+%
+% ============================================================
 \ifthenelse{\boolean{editorsversion}}{%
-    % EDITORS VERSION
-    % inline red comments - compact, no paragraph indentation
+% -------------------- EDITORS VERSION --------------------
     \newcommand{\editorsonly}[1]{%
-        \par\vspace{0.05in}
+        \par\vspace{0.05in}%
         {\footnotesize\noindent\textcolor{red!70!black}{\textbf{Editor's note:} #1}}%
-        \par\vspace{0.05in}
+        \par\vspace{0.05in}%
     }
 
-    % environment for soft-background editor comments
     \newenvironment{editorsonlyBox}{%
-        \par\medskip
-        \begin{tcolorbox}[
+        \par\medskip%
+        \begin{tcolorbox}[%
             enhanced,
             breakable,
             colback=red!5,
@@ -69,89 +162,106 @@
             bottom=2pt,
             left=4pt,
             right=4pt
-        ]
-    }{%
-        \end{tcolorbox}
+        ]%
+        }{%
+        \end{tcolorbox}%
     }
 
-    % red footnotes for editors
     \newcommand{\editorsfootnote}[1]{%
         \textcolor{red!70!black}{\footnote{\textcolor{red!70!black}{Editor's note: #1}}}%
     }
 
-    % command to cite all references in the .bib file (for editors only)
+    % Automatically cite all refs in .bib (for review phase)
     \nocite{*}
+
 }{%
-% STUDENT VERSION: suppress all editor content
+% -------------------- STUDENT VERSION --------------------
     \newcommand{\editorsonly}[1]{\ignorespaces}
     \newenvironment{editorsonlyBox}{\comment}{\uncomment}
     \newcommand{\editorsfootnote}[1]{}
 }
 
-%%% ---------- TEXT SPLITTER ----------
-%    The \splittext{<text>}{<n>} command splits <text> into lines of maximum <n> characters.
-%    It inserts a line break (\\) every n characters.
-%
-%    Example usage:
-%    \splittext{This is an example of splitting text into multiple lines every n characters.}{10}
-%
-%    This will produce:
 
+% ============================================================
+% 4. TEXT PROCESSING UTILITIES
+% ============================================================
+%
+% Utilities that manipulate or conditionally display text.
+% Includes text splitting, and empty-argument checking.
+%
+% ============================================================
+
+% --- Split Text Every N Characters --------------------------
+%
+% Splits input text into lines of maximum <n> characters.
+%
+% Usage:
+%   \spliteveryn{<n>}{<text>}
+%
+% Example:
+%   \spliteveryn{10}{This is an example of splitting text.}
+%
+% ------------------------------------------------------------
 \ExplSyntaxOn
-\NewDocumentCommand{\spliteveryn}{mm}
- {
-  % #1 = number of characters per line
-  % #2 = text to split
-  \str_set:Nn \l_tmpa_str { #2 }
-  \int_zero:N \l_tmpa_int
-  \str_map_inline:Nn \l_tmpa_str
-   {
-       ##1
-       \int_incr:N \l_tmpa_int
-       \int_compare:nNnT { \l_tmpa_int } = { #1 }
-           {
-           \\
-           \int_zero:N \l_tmpa_int
-       }
-   }
- }
+\NewDocumentCommand{\spliteveryn}{mm}{
+    \str_set:Nn \l_tmpa_str { #2 }
+    \int_zero:N \l_tmpa_int
+    \str_map_inline:Nn \l_tmpa_str{
+        ##1
+        \int_incr:N \l_tmpa_int
+        \int_compare:nNnT { \l_tmpa_int } = { #1 }{
+            \\
+            \int_zero:N \l_tmpa_int
+        }
+    }
+}
 \ExplSyntaxOff
 
-% --- Helper macro to check if argument is empty ---
+% --- Conditional Execution if Non-Empty ---------------------
+%
+% Usage:
+%   \IfNonEmpty{<text>}{<action>}
+%
+% Executes <action> only if <text> is non-empty.
+% Commonly used for optional arguments in macros.
+%
+% Example:
+%   \IfNonEmpty{caption}{\caption{caption}}
+%
+% ------------------------------------------------------------
 \makeatletter
 \newcommand{\IfNonEmpty}[2]{%
-    \if\relax\detokenize{#1}\relax
+    \if\relax\detokenize{#1}\relax%
     % empty → do nothing
-    \else
+    \else%
     #2%
-    \fi
+    \fi%
 }
 \makeatother
 
 
-% ==============================================================================
-% SIMPLE TABLE ENVIRONMENT
-% ------------------------------------------------------------------------------
-% The SimpleTable environment provides a consistent, styled table layout
-% with optional caption and label support.
+% ============================================================
+% 5. SIMPLE TABLE ENVIRONMENT
+% ============================================================
+%
+% A consistent, minimal table layout system with helper macros
+% for headers, subheaders, highlights, and notes.
 %
 % Usage:
-%   \begin{SimpleTable}[<column spec>]{<caption>}{<label>}
-%       \TableHeader{Col A & Col B & Col C}
-%       \TableRow{Data 1 & Data 2 & Data 3}
-%       \TableSubHeader{Subheader A & Subheader B & Subheader C}
-%       \TableRow{Data X & Data Y & Data Z}
-%       \TableHighlightRow{Important & Highlighted & Row}
-%       \TableNote{This is an example note below the table.}
+%   \begin{SimpleTable}[<col spec>]{<caption>}{<label>}
+%       \TableHeader{Col A & Col B}
+%       \TableRow{Data 1 & Data 2}
+%       \TableSubHeader{Sub A & Sub B}
+%       \TableHighlightRow{Important & Entry}
+%       \TableNote{This is a note below the table.}
 %   \end{SimpleTable}
 %
 % Arguments:
-%   [<column spec>] : optional tabularx column definition (default: s{1} s{1})
-%                     e.g., 's{1} s{1} s{1}' or 's{1.2} s{1.8}', everything is relative to eachother
-%   {<caption>}     : optional table caption (omit if empty)
-%   {<label>}       : optional table label for referencing  (omit if empty)
+%   [<col spec>] : tabularx column layout (default: s{1} s{1})
+%   {<caption>}  : optional table caption
+%   {<label>}    : optional table label for referencing
 %
-% ==============================================================================
+% ============================================================
 \newcolumntype{s}[1]{>{\hsize=#1\hsize\relax\arraybackslash}X}
 
 \ExplSyntaxOn
