@@ -1,5 +1,5 @@
 % ----------- Document settings -----------
-\documentclass[nonacm, sigconf]{acmart}
+\documentclass[nonacm, sigconf, balance=true]{acmart}
 \include{paperSettings} % import custom general paper settings
 \include{standardCommands} % import custom commands and packages
 
@@ -8,18 +8,6 @@
 \begin{document}
 
     \maketitle
-
-    \begin{editorsonlyBox}
-        \begin{itemize}
-            \item[X] Titel en eventuele subtitel, opleiding, naam schrijver, studentnummer schrijver.
-            \item Abstract
-            \item ‘Inleiding' met kader, probleemstelling, onderzoeksvraag en aankondiging van de structuur van het verslag. Hierin verwerk je ook een stukje achtergrond met een beschrijving van de belangrijke concepten of ‘related work'.
-            \item Een ‘Methode' met een beschrijving van de werkwijze die je gaat gebruiken om de onderzoeksvraag te beantwoorden.
-            \item Bespreking van de gevonden wetenschappelijke literatuur in een beschouwend geheel die aansluiten bij de onderzoeksvraag.
-            \item Een overkoepelende conclusie vanuit de verkregen inzichten en beantwoord de onderzoeksvraag met deze inzichten
-        \end{itemize}
-    \end{editorsonlyBox}
-
 
     \section{abstract}
     Er verschijnen steeds meer videodeurbellen aan de deurposten.
@@ -46,14 +34,10 @@
     Deze vraag sluit nauw aan bij het concept contextuele integriteit van Helen Nissenbaum, waarin iemand zo goed mogelijk in zijn of haar persoonlijke vrijheid gelaten wordt en data alleen in een passende context gedeeld mag worden.
     Videodeurbellen doorbreken deze verwachte informatiestromen, want waar voorbijgangers normaal anoniem over straat liepen, worden zij nu onbewust onderdeel van een digitaal surveillancesysteem.
 
-    \subsection{Theoretisch kader}
-    \begin{editorsonlyBox}
-        CHECK: Contextuele integriteit uitleggen.\\
-        CHECK: Benoem hoe dit verschilt van het klassieke idee van privacy (bijv. ``control over information'').\\
-        CHECK: Breng het naar jouw onderwerp: de context van de stoep voor een huis → normaal geen registratie, maar met een videodeurbellen wel. Hierdoor raakt de normale informatiestroom verstoord.
-    \end{editorsonlyBox}
 
-    \parencite{nissenbaum2009privacy}\editorsfootnote{Moet je nog lezen :(} Schreef al over een door haar ontwikkeld privacy theorie: \textbf{contextuele integriteit}.
+    \subsection{Theoretisch kader}
+
+    \parencite{nissenbaum2009privacy} Schreef al over een door haar ontwikkeld privacy theorie: \textbf{contextuele integriteit}.
     Dit schreef zij in haar boek \textit{Privacy In Context: Technology, Policy, and the Integrity of Social Life.}
 
     \vsmall
@@ -88,31 +72,16 @@
     De gebruikte bronnen zijn afkomstig uit wetenschappelijke publicaties en tijdschriften.
     Zo vormt het werk van \citeauthor{nissenbaum2009privacy} een theoretisch fundament op het gebied van privacy en contextuele integriteit.
 
-    \citeauthor{van2016privacy} biedt een bruikbaar framework en \citeauthor{shaffer2021applying} levert een casestudy over de samenwerking tussen Ring en de politie, wat direct aansluit bij het onderwerp van dit onderzoek.
-    Daarnaast bieden studies van \citeauthor{liu2021ethical}, \citeauthor{lalitha2019smart} en \citeauthor{chaudhari2020smart} een technisch perspectief op slimme deurbellen, waarbij veiligheid en functionaliteit empirisch worden onderzocht.
-    Tot slot leveren \citeauthor{selinger2022amazon} en \citeauthor{kelly2023ring} kritische beschouwingen over Amazon's Ring en de maatschappelijke gevolgen van consumentgestuurde surveillance.
-    Artikelen van \citeauthor{shaffer2021applying} en \citeauthor{tabassum2023exploring} bouwen daarop voort met recente analyses van smart home-privacy en gebruikerscontrole, gepubliceerd in peer-reviewed journals.
+    \citeauthor{van2016privacy} biedt een bruikbaar framework en \citeauthor{shaffer2021applying} levert een casestudy over de samenwerking tussen Ring en de politie, wat direct aansluit bij het onderwerp van dit onderzoek~(\ref{subsec:privacy-theorie}).
+    Daarnaast bieden studies van \citeauthor{liu2021ethical}, \citeauthor{lalitha2019smart} en \citeauthor{chaudhari2020smart} een technisch perspectief op slimme deurbellen, waarbij veiligheid en functionaliteit empirisch worden onderzocht~(\ref{subsec:technische-aspecten-van-slimme-deurbellen}).
+    Tot slot leveren \citeauthor{selinger2022amazon} en \citeauthor{kelly2023ring} kritische beschouwingen over Amazon's Ring en de maatschappelijke gevolgen van consumentgestuurde surveillance~(\ref{subsec:maatschappelijke-en-ethische-implicaties}).
+    Artikelen van \citeauthor{shaffer2021applying} en \citeauthor{tabassum2023exploring} bouwen daarop voort met recente analyses van smart home-privacy en gebruikerscontrole, gepubliceerd in peer-reviewed journals~(\ref{subsec:gebruikerservaring-/-gedrag2}).
     Samen bieden deze bronnen een goed gebalanceerde mix van theoretische, technische en ethische invalshoeken, afkomstig uit betrouwbare en actuele academische contexten.
 
 
     \section{Beschouwing van literatuur}
-    \begin{editorsonlyBox}
-        Hier ga je echt de gevonden artikelen samenbrengen in een doorlopend verhaal.
-        Opdelen in subthema's:
-
-        \begin{itemize}
-            \item Bewegingsdetectie, cloudopslag, delen met politie.
-            \item Studies over hoe vaak mensen ongewild gefilmd worden; klachten; gevoelens van surveillance.
-            \item Wat bewoners ervaren: afschrikking, bewijs bij criminaliteit. Literatuur die laat zien of dit effect groot/klein is.
-            \item Hoe de informatiestromen door de deurbel afwijken van de ‘normale sociale verwachtingen': een toevallige voorbijganger verwacht niet dat zijn route naar de supermarkt opgenomen en bewaard wordt.
-            \item Burenruzies, wantrouwen, normalisering van surveillance in de publieke ruimte.
-        \end{itemize}
-
-    \end{editorsonlyBox}
 
     \subsection{Privacy-theorie}\label{subsec:privacy-theorie}
-    \editorsonly{Type bron: theoretisch kader dat voorspelt wanneer slimme stadstechnologieën privacyzorgen oproepen; en dat mensen niet gevolgd willen worden.}
-
     \parencite{van2016privacy} stelt dat data in een privacy framework (Figuur~\ref{fig:privacy_framework}) opgedeeld kan worden.
     Deze is opgedeeld in twee assen: de y-as geeft aan of data wel of niet persoonlijk is, en de x-as geeft aan of data wordt gebruikt om te helpen of om te monitoren.
 
@@ -153,8 +122,6 @@
     Een samengevoegd overzicht van technische, bouwkundige en praktische perspectieven op privacy en beveiliging bij slimme deurbellen.
     Hieronder volgen de bevindingen en reflecties uit drie studies — elk met hun eigen focus — maar samengebracht onder één overkoepelend thema: wat betekent \emph{privacy} technisch en praktisch in een world-wide-netwerk van videodeurbellen?
 
-    \editorsonly{Type bron: Technische kant van slimme deurbellen: hoe}
-
     Na uitvoerig \textit{threat modeling} en \textit{penetration testing} concludeert~\parencite{liu2021ethical} dat de onderzochte smart video deurbel over het algemeen degelijk maar niet foutloos is.
     Er werden geen directe, kritieke zero-days\footnote{Een beveiligingsprobleem dat nog geen oplossing heeft en nog niet bekend is bij de ontwikkelaars} gevonden, maar er zijn meerdere zwakke plekken die in de praktijk misbruikt kunnen worden — met name in de Android-app, de accountbeveiliging en de draadloze communicatie.
     Belangrijk is dat deze zwaktes vooral aantonen dat privacy geen gegeven is; het is iets dat voortdurend verdedigd moet worden.
@@ -167,14 +134,10 @@
         \TableRow{Draadloze communicatie & Verkeer tussen app en deurbel verloopt via HTTPS, waardoor afluisteren bemoeilijkt wordt. Toch blijft een MitM-aanval mogelijk als de aanvaller een eigen CA weet te installeren. Replay-aanvallen zijn theoretisch uitvoerbaar bij specifieke verzoeken (zoals uitloggen of gebruikers delen). Deauthenticatie-aanvallen kunnen de deurbel tijdelijk uitschakelen en zelfs helpen bij het kraken van het Wi-Fi-wachtwoord.}
     \end{SimpleTable}
 
-    \citeauthor{liu2021ethical} benadrukt dat beveiligingstesten op IoT-apparaten geen bijzaak zijn — veel producten bevatten nog steeds fundamentele fouten in encryptie, databeheer en netwerkgedrag.
+    \citeauthor{liu2021ethical} benadrukt dat beveiligingstesten op IoT-apparaten geen bijzaak zijn — veel producten bevatten nog steeds fouten in encryptie, databeheer en netwerkgedrag.
     Xiaomi stond dit onderzoek toe onder de voorwaarde dat andere gebruikers of servers niet werden geraakt; alle testen werden op eigen apparaten en accounts uitgevoerd en de gevonden kwetsbaarheden zijn gerapporteerd aan de fabrikant.
     Hoewel sommige bevindingen door de fabrikant als \textit{``ignored''} zijn bestempeld (omdat ze moeilijk te misbruiken of structureel lastig te voorkomen zouden zijn), blijven ze cruciaal voor productverbetering.
     De deurbel is niet direct onveilig, maar zeker niet waterdicht, met andere woorden eerder \emph{voldoende} dan \emph{uitstekend}.
-
-    \bigskip
-
-    \editorsonly{Type bron: hier wordt voornamelijk gesproken over hoe je het beste een camera kan maken.}
 
     \parencite{chaudhari2020smart} benaderen het probleem vanuit het design van een slimme deurbel: een integratie van gezichtsherkenning, stemherkenning en bewegingsdetectie (Raspberry Pi + OpenCV + DSP + Speech-to-Text).
     Hun focus ligt op functionaliteit en automatische besluitvorming — bij het aanbellen wordt een foto gemaakt die vergeleken wordt met een database; onbekende bezoekers genereren een melding met foto en een OTP naar de eigenaar, en alleen met die OTP kan iemand uiteindelijk worden toegevoegd.
@@ -190,10 +153,6 @@
     Technisch interessant (en in bepaalde gevallen nuttig), maar deze aanpak schuurt meteen met privacyprincipes: gezichts- en spraakdata zijn biometrisch en gevoelig.
     Het systeem lost één tekort op (valse acceptatie door alleen gezichtsherkenning) door meerdere sensorstromen te combineren, maar vergroot tegelijkertijd de hoeveelheid persoonlijke data die wordt vastgelegd en verwerkt.
     In termen van privacy-theorie is dat een paradox: meer \emph{zekerheid} vergt vaak meer \emph{data}, wat dus meer \emph{risico}.
-
-    \bigskip
-
-    \editorsonly{Type bron: hoe maak je een eigen videodeurbel}
 
     \parencite{lalitha2019smart} tonen hoe eenvoudig het is om zelf een videodeurbel te bouwen met een Raspberry Pi 3\footnote{Een minicomputer van +/- €40,-}, een bewegingssensor en een goedkoop cameraatje.
     Bij beweging wordt automatisch video opgenomen, naar de cloud gestuurd, en ontvangen de eigenaar en diegene zijn apparaten meldingen (email, SMS).
@@ -219,7 +178,6 @@
     sterke certificaatvalidatie, moderne hashing, veilige sessiebeheer, encryptie end-to-end en minimale logging zijn noodzakelijk maar niet voldoende: ontwerpkeuzes en maatschappelijke normen (wat is acceptabel toezicht in een buurt?) bepalen in sterke mate of een systeem \emph{privacyvriendelijk} genoemd mag worden.
 
     \subsection{Maatschappelijke en ethische implicaties}\label{subsec:maatschappelijke-en-ethische-implicaties}
-    \editorsonly{Type bron: Kritische analyse van Amazon's Ring-ecosysteem en de marketing van Ring-deurbellen; hoe deze technologie sociale problemen veroorzaakt en ethische dilemma's oproept.}
 
     \parencite{selinger2022amazon} gebruiken Amazon's \textit{Ring-ecosysteem}\footnote{videodeurbellen's, de Neighbors-app en samenwerkingen met de politie} als voorbeeld van hoe consumententechnologie ons sociale leven langzaam maar zeker kan veranderen.
     Vanuit Amazon is het een belofte van veiligheid, maar langzamerhand leidt dit tot een samenleving waarin iedereen elkaar in de gaten houdt.
@@ -291,8 +249,6 @@
 
     \subsection{Gebruikerservaring / Gedrag}\label{subsec:gebruikerservaring-/-gedrag2}
 
-    \editorsonly{Type bron: combinatie van gebruik, misbruik en gedrag rond smart home devices en videodeurbellen.}
-
     \parencite{moh2023characterizing} heeft een onderzoek gedaan naar ongeautoriseerd gebruik van smart home devices.
     Dit gebeurde via twee enquêtes uitgevoerd in de Verenigde Staten.
     De eerste enquête was open en bedoeld om een breed beeld te krijgen van soorten misbruik en persoonlijke ervaringen met slimme apparaten.
@@ -360,9 +316,9 @@
 
 
     \section{Conclusie}
-    Uit dit onderzoek blijkt dat slimme deurbellen, hoewel ontworpen vanuit een gevoel van veiligheid en gemak, fundamentele verschuivingen veroorzaken in hoe we privacy beleven en beschermen.
-    Binnen het kader van \textbf{contextuele integriteit} van \citeauthor{nissenbaum2009privacy} wordt duidelijk dat de oorspronkelijke informatiestromen (wie wat van wie mag weten, en in welke context) worden doorbroken.
-    Waar straatruimte ooit een publieke maar anonieme omgeving was, wordt die door camera's aan gevels langzaam een semipubliek surveillancelandschap, waarin buren, voorbijgangers en pakketbezorgers (ongewild) onderdeel worden van iemands persoonlijke drang om zich veilig te voelen.
+    Uit dit onderzoek blijkt dat slimme deurbellen, hoewel ontworpen vanuit een gevoel van veiligheid en gemak, verschuivingen veroorzaken in hoe we privacy beschermen.
+    Binnen het kader van \textbf{contextuele integriteit} van \citeauthor{nissenbaum2009privacy} wordt duidelijk dat de oorspronkelijke informatiestromen worden doorbroken.
+    Waar ooit een publieke anonieme omgeving was, worden nu camera's aan gevels gehangen en langzaam een semi-publiek surveillancelandschap gecreëerd, waarin buren, voorbijgangers en pakketbezorgers (ongewild) onderdeel worden van iemands persoonlijke drang om zich veilig te voelen.
 
     De literatuur laat zien dat deze technologie niet slechts een technisch hulpmiddel is, maar een sociaal-politiek systeem in miniatuur.
     Amazon’s Ring, en vergelijkbare apparaten, vervagen de grenzen tussen particulier en publiek, tussen bedrijf en politie.
@@ -378,6 +334,4 @@
     En precies die context is bij slimme deurbellen structureel uit balans geraakt.
 
     \printbibliography
-
-    \balance % balances last-page columns
 \end{document}

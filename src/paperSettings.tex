@@ -30,8 +30,17 @@
 \usepackage{array}
 \setlength{\columnsep}{0.333in}
 \renewcommand{\baselinestretch}{1.05}
-\setlength\parindent{1em}
-\setlength{\footskip}{20pt}
+\setlength\parindent{2mm}
+\setlength{\footskip}{40pt} %set footer size bigger to avoid overlap with text
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    left=15mm,
+    right=15mm,
+    top=15mm,
+    bottom=15mm,
+}
+
 
 % ----------- Typography -----------
 \usepackage{microtype} % subtle spacing & justification improvements
@@ -45,7 +54,7 @@
 \usepackage{enumitem}
 \setlist[itemize]{
     leftmargin = *,
-    listparindent = 1cm,
+    listparindent = 10mm,
     label = {-} % makes the default item marker a dash
 }
 
@@ -100,6 +109,7 @@
 \settopmatter{printacmref=false}
 \setcopyright{none}
 \settopmatter{printfolios=true}
+\renewcommand\footnotetextcopyrightpermission[1]{}
 
 % ----------- Editors/general version -----------
 \usepackage{comment}
@@ -108,6 +118,7 @@
 \setboolean{editorsversion}{\editorsVersion}  % change to false for student version
 
 
+% ----------- Paper layout information -----------
 \title{\documentTitle}
 \subtitle{\documentSubtitle}
 
@@ -119,7 +130,6 @@
     \city{\institutionCity}
     \country{\institutionCountry}
 }
-
 
 \hypersetup{
     pdfauthor={\authorName},
