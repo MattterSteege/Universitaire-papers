@@ -1,3 +1,4 @@
+
 % ============================================================
 % LATEX CUSTOM COMMANDS LIBRARY
 % Author: Matt
@@ -97,8 +98,7 @@
     }{%
         \vsmall%
         \begin{flushright}%
-            \parbox{0.95\linewidth}{\textit{#1}}%
-            (\citeauthor{#2}, \citeyear{#2}, p.~#3)%
+            \parbox{0.95\linewidth}{\textit{#1}}\newline(\citeauthor{#2}, \citeyear{#2}, p.~#3)%
         \end{flushright}%
         \vsmall%
     }%
@@ -114,7 +114,7 @@
 %
 % Produces: (see Doe, 2022, for an overview)
 % ------------------------------------------------------------
-\newcommand{\prepostparencite}[3][]{%
+\NewDocumentCommand{\prepostparencite}{oom}{%
     (#1 \citeauthor{#3}, \citeyear{#3}#2)%
 }
 
@@ -360,3 +360,26 @@
 
 % ========== Spacer ==========
 \NewDocumentCommand{\TableSpacer}{}{\\[-3pt]}
+
+% ============================================================
+% 5. SIMPLE CODE ENVIRONMENT
+% ============================================================
+%
+% A consistent, minimal table layout system with helper macros
+% for headers, subheaders, highlights, and notes.
+%
+% Usage:
+%   \begin{SimpleTable}[<col spec>]{<caption>}{<label>}
+%       \TableHeader{Col A & Col B}
+%       \TableRow{Data 1 & Data 2}
+%       \TableSubHeader{Sub A & Sub B}
+%       \TableHighlightRow{Important & Entry}
+%       \TableNote{This is a note below the table.}
+%   \end{SimpleTable}
+%
+% Arguments:
+%   [<col spec>] : tabularx column layout (default: s{1} s{1})
+%   {<caption>}  : optional table caption
+%   {<label>}    : optional table label for referencing
+%
+% ============================================================

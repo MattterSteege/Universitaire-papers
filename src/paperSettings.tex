@@ -5,16 +5,19 @@
 % ----------- Document class -----------
 \def\documentTitle      {De wereld buiten je voordeur} % replace with actual document title
 \def\documentSubtitle   {Contextual integrity bij slimme deurbellen} % replace with actual subtitle if any, else leave empty
-
 \def\authorName         {Matt ter Steege, 9932003} % replace with actual author name
 \def\authorEmail        {matttersteege@gmail.com} % replace with actual author email
 \def\institutionName    {Universiteit Utrecht} % replace with actual institution name
 \def\institutionCountry {Nederland} % replace with actual institution location
 \def\institutionCity    {Utrecht} % replace with actual institution location
-
 \def\dueDate            {Oktober 2025} % replace with actual due date
 
 \def\editorsVersion     {false} % true om editorsnote e.d. te tonen, false voor verbergen
+\def\makeTitlePage      {true}  % true om titelpagina te maken, false om over te slaan
+\def\makeTOCpage        {false}  % true om inhoudsopgave te maken, false om over te slaan
+\def\makeBibliography   {true}  % true om bibliografie te maken, false om over te slaan
+
+\def\listMark           {-} % itemize marker, e.g. '-', '*', '\textbullet', etc.
 
 %----------- DONT TOUCH BELOW THIS LINE -----------
 \usepackage{xparse}
@@ -41,6 +44,24 @@
     bottom=15mm,
 }
 
+% ----------- Table of Contents -----------
+\usepackage{titletoc}
+\setcounter{tocdepth}{2} % include subsections in TOC
+%
+\titlecontents{section}
+[0] % i
+{\vspace{0.05cm}}
+{\thecontentslabel\enspace}%\thecontentslabel
+{}
+{\titlerule*[0.1cm]{.}\contentspage}%]
+
+\titlecontents{subsection}
+[1em] %
+{\vspace{0.05cm}}
+{\thecontentslabel\enspace}%\thecontentslabel
+{\hspace*{1em}}
+{\titlerule*[0.1cm]{.}\contentspage}
+
 
 % ----------- Typography -----------
 \usepackage{microtype} % subtle spacing & justification improvements
@@ -55,7 +76,7 @@
 \setlist[itemize]{
     leftmargin = *,
     listparindent = 10mm,
-    label = {-} % makes the default item marker a dash
+    label = {\listMark} % makes the default item marker a dash
 }
 
 % ----------- Figures & Tables -----------
@@ -136,3 +157,23 @@
     pdftitle={\documentTitle},
     pdfborder={0 0 0}
 }
+
+% When \begin{document} is written, also add \maketitle and \tableofcontents there. (if settings are true)
+\AtBeginDocument
+{%
+    \ifthenelse{\equal{\makeTitlePage}{true}}{%
+        \maketitle
+    }{}
+    \ifthenelse{\equal{\makeTOCpage}{true}}{%
+        \tableofcontents
+        \newpage
+    }{}
+}%
+
+% Before \end{document}, add bibliography
+\AtEndDocument
+{%
+    \ifthenelse{\equal{\makeBibliography}{true}}{%
+        \printbibliography
+    }{}
+}%
